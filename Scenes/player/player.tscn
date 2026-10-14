@@ -1,0 +1,87 @@
+[gd_scene format=3 uid="uid://dq18fci16dwip"]
+
+[ext_resource type="Texture2D" uid="uid://dfqyul88mxsyi" path="res://Assets/tilemaps/monochrome_tilemap_packed.png" id="1_8p05u"]
+[ext_resource type="Script" uid="uid://bcacrj8sh5unp" path="res://Scenes/player/player.gd" id="1_eo61r"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eo61r"]
+atlas = ExtResource("1_8p05u")
+region = Rect2(0, 208, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mxepk"]
+atlas = ExtResource("1_8p05u")
+region = Rect2(80, 208, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e41v5"]
+atlas = ExtResource("1_8p05u")
+region = Rect2(64, 208, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ca0mu"]
+atlas = ExtResource("1_8p05u")
+region = Rect2(16, 208, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6upyo"]
+atlas = ExtResource("1_8p05u")
+region = Rect2(32, 208, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xxarj"]
+atlas = ExtResource("1_8p05u")
+region = Rect2(48, 208, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7771s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eo61r")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mxepk")
+}],
+"loop": 1,
+"name": &"falling",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e41v5")
+}],
+"loop": 1,
+"name": &"jumping",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ca0mu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6upyo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xxarj")
+}],
+"loop": 1,
+"name": &"run",
+"speed": 8.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2muot"]
+size = Vector2(10, 12)
+
+[node name="Player" type="CharacterBody2D" unique_id=486279298 node_paths=PackedStringArray("sprite")]
+script = ExtResource("1_eo61r")
+sprite = NodePath("Sprite")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1222319149]
+sprite_frames = SubResource("SpriteFrames_7771s")
+animation = &"falling"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=300080336]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_2muot")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=421715226]
+zoom = Vector2(3, 3)
