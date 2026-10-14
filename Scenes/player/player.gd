@@ -117,13 +117,6 @@ func reset_coyote_time() -> void:
 func _on_coyote_time_timeout() -> void:
 	reset_coyote_time()
 
-func _on_hitbox_body_entered(body: Node2D) -> void:
-	if body.is_in_group(&"monster"):
-		take_damage(body.atk)
-		knockback_direction = (global_position-body.global_position).normalized()
-		taking_knockback = true
-		get_tree().create_timer(.2).timeout.connect(func():taking_knockback=false)
-
 func jump():
 	velocity.y = -JUMP_VELOCITY
 	gravity_factor = 0.0
@@ -136,3 +129,22 @@ func _on_hurtbox_body_entered(body: Node2D) -> void:
 	if atk_direction == "down":
 		jump_time = randf_range(.18,.22)
 		jump()
+
+func _on_hitbox_body_shape_entered(body_rid: RID, body: Node2D, _body_shape_index: int, _local_shape_index: int) -> void:
+	var atk : int = 0
+	var kb_enemy_pos : Vector2 = Vector2.ZERO
+	if body is TileMapLayer:
+		var tile_coord = body.get_coords_for_body_rid(body_rid)
+		var tile_data = body.get_cell_tile_data(tile_coord).get_custom_data("atk")
+		atk = tile_data
+		kb_enemy_pos = to_global(body.map_to_local(tile_coord))/2 #i genuinely have no idea why i need to divide by two, but it works
+	elif body.is_in_group(&"monster"):
+		atk = body.atk
+		kb_enemy_pos = body.global_position
+	
+	if  atk != 0:
+		take_damage(atk)
+		knockback_direction = (global_position-kb_enemy_pos).normalized()
+		taking_knockback = true
+		get_tree().create_timer(.2).timeout.connect(func():taking_knockback=false)
+	

@@ -1,4 +1,6 @@
 extends CharacterBody2D
+class_name BasicEnemy
+
 @export var sprite: AnimatedSprite2D
 @export var wall_detector: RayCast2D
 @export var death_particles: CPUParticles2D

@@ -38,6 +38,10 @@ folder_colors={
 Player=""
 monster=""
 
+[gui]
+
+theme/custom_font="uid://baiytg4kpc0wb"
+
 [input]
 
 Jump={
@@ -81,6 +85,7 @@ Attack={
 2d_physics/layer_1="World"
 2d_physics/layer_2="Player"
 2d_physics/layer_3="Ennemies"
+2d_physics/layer_4="Obstacles"
 
 [physics]
 
