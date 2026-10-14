@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dq18fci16dwip" path="res://Scenes/player/player.tscn" id="1_jb7am"]
 [ext_resource type="Texture2D" uid="uid://dfqyul88mxsyi" path="res://Assets/tilemaps/monochrome_tilemap_packed.png" id="2_2muot"]
+[ext_resource type="PackedScene" uid="uid://75wn2vwemhr1" path="res://Scenes/ui/ui.tscn" id="3_qxyia"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qxyia"]
 texture = ExtResource("2_2muot")
@@ -536,3 +537,5 @@ position = Vector2(314, 308)
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=462055259]
 tile_map_data = PackedByteArray("AAAPABQAAAAHAAQAAAAPABUAAAAHAAUAAAAPABYAAAAHAAYAAAAQABQAAAAIAAQAAAAQABUAAAAIAAUAAAAQABYAAAAIAAYAAAARABQAAAAIAAQAAAARABUAAAAIAAUAAAARABYAAAAIAAYAAAASABQAAAAIAAQAAAASABUAAAAIAAUAAAASABYAAAAIAAYAAAATABQAAAAIAAQAAAATABUAAAAIAAUAAAATABYAAAAIAAYAAAAUABQAAAAIAAQAAAAUABUAAAAIAAUAAAAUABYAAAAIAAYAAAAVABQAAAAIAAQAAAAVABUAAAAIAAUAAAAVABYAAAAIAAYAAAAWABQAAAAIAAQAAAAWABUAAAAIAAUAAAAWABYAAAAIAAYAAAAXABQAAAAIAAQAAAAXABUAAAAIAAUAAAAXABYAAAAIAAYAAAAYABQAAAAJAAQAAAAYABUAAAAJAAUAAAAYABYAAAAJAAYAAAAbABQAAAAEAAQAAAAcABQAAAAFAAQAAAAdABQAAAAGAAQAAAA=")
 tile_set = SubResource("TileSet_5q66j")
+
+[node name="UI" parent="." unique_id=1087143809 instance=ExtResource("3_qxyia")]

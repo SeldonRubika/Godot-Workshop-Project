@@ -16,6 +16,10 @@ config/features=PackedStringArray("4.7", "GL Compatibility")
 boot_splash/bg_color=Color(0, 0, 0, 1)
 config/icon="res://icon.svg"
 
+[autoload]
+
+Global="*uid://c6tmkmlfsm4xn"
+
 [display]
 
 window/stretch/mode="canvas_items"
@@ -28,6 +32,10 @@ folder_colors={
 "res://Assets/": "red",
 "res://Scenes/": "yellow"
 }
+
+[global_group]
+
+Player=""
 
 [input]
 

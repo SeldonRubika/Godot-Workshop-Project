@@ -1,8 +1,12 @@
 extends CharacterBody2D
+class_name Player
 
 @export var sprite: AnimatedSprite2D
 @export var coyote_time: Timer
 
+signal took_damage(new_hp:int)
+signal death
+#Movement
 const SPEED := 4000.0
 const BASE_GRAVITY_FACTOR := 1.2
 const JUMP_VELOCITY := 200.0
@@ -11,6 +15,17 @@ var gravity_factor := 1.0
 var jump_time := .2
 var can_jump :bool = true
 var jump_hold := 1.0
+
+#Life
+var max_hp := 100
+var hp := max_hp
+
+func take_damage(amount: int):
+	hp = min(hp-amount,max_hp)
+	took_damage.emit(hp)
+	if hp <= 0:
+		death.emit()
+
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
@@ -40,16 +55,15 @@ func _physics_process(delta: float) -> void:
 
 	var direction := Input.get_axis("Go_Left", "Go_Right")
 	if direction:
-		if is_on_floor() and sprite.animation == "default":
+		if is_on_floor() and sprite.animation != "preparing_to_jump":
 			sprite.play("run")
 		sprite.flip_h = direction < 0
 		velocity.x = direction * SPEED *delta
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED*delta)
-		if is_on_floor() and sprite.animation == "run":
+		if is_on_floor() and sprite.animation != "preparing_to_jump":
 			sprite.play("default")
-
-
+	
 	move_and_slide()
 
 func reset_coyote_time() -> void:
