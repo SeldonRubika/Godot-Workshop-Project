@@ -162,6 +162,7 @@ animations = [{
 }]
 
 [node name="Player" type="CharacterBody2D" unique_id=486279298 node_paths=PackedStringArray("sprite", "coyote_time", "hurtbox", "atk_animation") groups=["Player"]]
+z_index = 1
 collision_layer = 2
 script = ExtResource("1_eo61r")
 sprite = NodePath("Sprite")
@@ -178,6 +179,7 @@ position = Vector2(0, 1.5)
 shape = SubResource("RectangleShape2D_2muot")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=421715226]
+offset = Vector2(0, -24)
 zoom = Vector2(3, 3)
 
 [node name="CoyoteTime" type="Timer" parent="." unique_id=1053421249]
