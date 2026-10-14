@@ -3,6 +3,7 @@ extends CharacterBody2D
 @export var wall_detector: RayCast2D
 @export var death_particles: CPUParticles2D
 @export var collision_shape_2d: CollisionShape2D
+@export var life: Control
 
 @export var speed = 4000.0
 @export var direction := 1.0
@@ -11,6 +12,9 @@ extends CharacterBody2D
 var max_hp := 20
 var hp := max_hp
 var stop := false
+
+func _ready() -> void:
+	life.set_ui_max(max_hp)
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
@@ -26,11 +30,13 @@ func _physics_process(delta: float) -> void:
 
 func take_damage(amount: int):
 	hp = min(hp-amount,max_hp)
+	life.update_life_ui(hp)
 	if hp <=0:
 		death_particles.emitting = true 
 		collision_shape_2d.set_deferred("disabled",true)
 		stop = true
 		sprite.hide()
+		life.hide()
 		await death_particles.finished
 		queue_free()
 	modulate = Color.FIREBRICK

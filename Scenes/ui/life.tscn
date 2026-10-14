@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://j8odnfubaucm"]
+
+[ext_resource type="Script" uid="uid://vrd3l7vdbomg" path="res://Scenes/ui/life.gd" id="1_p4f3q"]
+[ext_resource type="Texture2D" uid="uid://y8uph0r1uhm6" path="res://Assets/Sprites/XpBar.png" id="2_2goue"]
+[ext_resource type="Texture2D" uid="uid://b0rlwocjlw6ko" path="res://Assets/Sprites/Blank.png" id="3_xih8v"]
+[ext_resource type="Texture2D" uid="uid://cn1i851rbrd44" path="res://Assets/Sprites/XpBarUnder.png" id="4_rkfq3"]
+
+[node name="Life" type="Control" unique_id=1433030506 node_paths=PackedStringArray("hp_bar", "hp_bar_highlight")]
+layout_mode = 3
+anchor_left = 0.01
+anchor_top = 0.92746913
+anchor_right = 0.18663195
+anchor_bottom = 0.9800001
+grow_vertical = 0
+script = ExtResource("1_p4f3q")
+hp_bar = NodePath("HpBar")
+hp_bar_highlight = NodePath("HpBarHighlight")
+metadata/_edit_use_anchors_ = true
+
+[node name="HpBarHighlight" type="TextureProgressBar" parent="." unique_id=844140812]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+step = 0.1
+value = 100.0
+nine_patch_stretch = true
+stretch_margin_left = 4
+stretch_margin_top = 4
+stretch_margin_right = 4
+stretch_margin_bottom = 4
+texture_over = ExtResource("2_2goue")
+texture_progress = ExtResource("3_xih8v")
+tint_progress = Color(0.9019608, 0.21960784, 0.05882353, 1)
+
+[node name="HpBar" type="TextureProgressBar" parent="." unique_id=1009013824]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+step = 0.1
+value = 100.0
+nine_patch_stretch = true
+stretch_margin_left = 4
+stretch_margin_top = 4
+stretch_margin_right = 4
+stretch_margin_bottom = 4
+texture_under = ExtResource("4_rkfq3")
+texture_over = ExtResource("2_2goue")
+texture_progress = ExtResource("3_xih8v")
+tint_under = Color(0.4509804, 1, 0.25490198, 1)
+tint_progress = Color(0.4509804, 1, 0.25490198, 1)

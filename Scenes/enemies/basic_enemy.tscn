@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://dfqyul88mxsyi" path="res://Assets/tilemaps and spritesheets/monochrome_tilemap_packed.png" id="1_8hmvv"]
 [ext_resource type="Script" uid="uid://ftrsu0tfpbc7" path="res://Scenes/enemies/basic_enemy.gd" id="1_pikmp"]
+[ext_resource type="PackedScene" uid="uid://j8odnfubaucm" path="res://Scenes/ui/life.tscn" id="3_3070v"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pikmp"]
 atlas = ExtResource("1_8hmvv")
@@ -47,7 +48,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5q66j"]
 size = Vector2(8, 10)
 
-[node name="Basic_Enemy" type="CharacterBody2D" unique_id=713533899 node_paths=PackedStringArray("sprite", "wall_detector", "death_particles", "collision_shape_2d") groups=["monster"]]
+[node name="Basic_Enemy" type="CharacterBody2D" unique_id=713533899 node_paths=PackedStringArray("sprite", "wall_detector", "death_particles", "collision_shape_2d", "life") groups=["monster"]]
 collision_layer = 4
 collision_mask = 5
 script = ExtResource("1_pikmp")
@@ -55,6 +56,7 @@ sprite = NodePath("sprite")
 wall_detector = NodePath("wall_detector")
 death_particles = NodePath("DeathParticles")
 collision_shape_2d = NodePath("CollisionShape2D")
+life = NodePath("Life")
 
 [node name="sprite" type="AnimatedSprite2D" parent="." unique_id=2060938428]
 sprite_frames = SubResource("SpriteFrames_7771s")
@@ -82,3 +84,14 @@ emission_sphere_radius = 8.0
 spread = 180.0
 gravity = Vector2(0, 0)
 initial_velocity_max = 2.0
+
+[node name="Life" parent="." unique_id=1433030506 instance=ExtResource("3_3070v")]
+custom_minimum_size = Vector2(32, 2)
+anchor_left = -1.5
+anchor_top = -1.0
+anchor_right = 0.0
+anchor_bottom = -1.0
+offset_left = -8.0
+offset_top = -8.0
+offset_bottom = -6.0
+scale = Vector2(0.5, 0.5)
