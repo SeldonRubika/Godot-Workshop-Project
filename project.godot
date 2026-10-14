@@ -13,6 +13,7 @@ config_version=5
 config/name="workshop-final-project"
 run/main_scene="uid://bx8324ifw78le"
 config/features=PackedStringArray("4.7", "GL Compatibility")
+boot_splash/bg_color=Color(0, 0, 0, 1)
 config/icon="res://icon.svg"
 
 [display]
@@ -48,6 +49,12 @@ Go_Right={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="World"
+2d_physics/layer_2="Player"
+2d_physics/layer_3="Ennemies"
+
 [physics]
 
 3d/physics_engine="Jolt Physics"
@@ -58,3 +65,4 @@ textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+environment/defaults/default_clear_color=Color(0, 0, 0, 1)
