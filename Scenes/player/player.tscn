@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://dq18fci16dwip"]
 
-[ext_resource type="Texture2D" uid="uid://dfqyul88mxsyi" path="res://Assets/tilemaps/monochrome_tilemap_packed.png" id="1_8p05u"]
+[ext_resource type="Texture2D" uid="uid://dfqyul88mxsyi" path="res://Assets/tilemaps and spritesheets/monochrome_tilemap_packed.png" id="1_8p05u"]
 [ext_resource type="Script" uid="uid://bcacrj8sh5unp" path="res://Scenes/player/player.gd" id="1_eo61r"]
+[ext_resource type="Texture2D" uid="uid://bt1biknciw6vi" path="res://Assets/tilemaps and spritesheets/slash.png" id="3_mxepk"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_eo61r"]
 atlas = ExtResource("1_8p05u")
@@ -81,21 +82,99 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2muot"]
-size = Vector2(10, 12)
+size = Vector2(12, 13)
 
-[node name="Player" type="CharacterBody2D" unique_id=486279298 node_paths=PackedStringArray("sprite", "coyote_time") groups=["Player"]]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5q66j"]
+size = Vector2(10, 11)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eo61r"]
+size = Vector2(24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kd672"]
+atlas = ExtResource("3_mxepk")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t3oqc"]
+atlas = ExtResource("3_mxepk")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p8lfk"]
+atlas = ExtResource("3_mxepk")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uawwb"]
+atlas = ExtResource("3_mxepk")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ag54m"]
+atlas = ExtResource("3_mxepk")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g7b1g"]
+atlas = ExtResource("3_mxepk")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h0khc"]
+atlas = ExtResource("3_mxepk")
+region = Rect2(384, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6vj4j"]
+atlas = ExtResource("3_mxepk")
+region = Rect2(448, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nyrd7"]
+atlas = ExtResource("3_mxepk")
+region = Rect2(512, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5q66j"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kd672")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t3oqc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p8lfk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uawwb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ag54m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g7b1g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h0khc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6vj4j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nyrd7")
+}],
+"loop": 0,
+"name": &"atk",
+"speed": 20.0
+}]
+
+[node name="Player" type="CharacterBody2D" unique_id=486279298 node_paths=PackedStringArray("sprite", "coyote_time", "hurtbox", "atk_animation") groups=["Player"]]
 collision_layer = 2
-collision_mask = 5
 script = ExtResource("1_eo61r")
 sprite = NodePath("Sprite")
 coyote_time = NodePath("CoyoteTime")
+hurtbox = NodePath("Hurtbox")
+atk_animation = NodePath("Hurtbox/atk_animation")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="." unique_id=1222319149]
 sprite_frames = SubResource("SpriteFrames_7771s")
-animation = &"preparing_to_jump"
+autoplay = "default"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=300080336]
-position = Vector2(0, 1)
+position = Vector2(0, 1.5)
 shape = SubResource("RectangleShape2D_2muot")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=421715226]
@@ -104,4 +183,30 @@ zoom = Vector2(3, 3)
 [node name="CoyoteTime" type="Timer" parent="." unique_id=1053421249]
 wait_time = 0.13
 
+[node name="Hitbox" type="Area2D" parent="." unique_id=1514983429]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1826636921]
+position = Vector2(0, 1.5)
+shape = SubResource("RectangleShape2D_5q66j")
+debug_color = Color(0.66697544, 0.50653416, 0.19740525, 0.41960785)
+
+[node name="Hurtbox" type="Area2D" parent="." unique_id=633256014]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=191155044]
+shape = SubResource("RectangleShape2D_eo61r")
+debug_color = Color(0.9473135, 0.19126734, 0.32852942, 0.41960785)
+
+[node name="atk_animation" type="AnimatedSprite2D" parent="Hurtbox" unique_id=1192706643]
+scale = Vector2(0.8, 0.8)
+sprite_frames = SubResource("SpriteFrames_5q66j")
+animation = &"atk"
+frame = 8
+frame_progress = 1.0
+
 [connection signal="timeout" from="CoyoteTime" to="." method="_on_coyote_time_timeout"]
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
+[connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]

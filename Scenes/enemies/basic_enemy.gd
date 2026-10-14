@@ -1,0 +1,40 @@
+extends CharacterBody2D
+@export var sprite: AnimatedSprite2D
+@export var wall_detector: RayCast2D
+@export var death_particles: CPUParticles2D
+@export var collision_shape_2d: CollisionShape2D
+
+@export var speed = 4000.0
+@export var direction := 1.0
+@export var atk := 4
+
+var max_hp := 20
+var hp := max_hp
+var stop := false
+
+func _physics_process(delta: float) -> void:
+	if not is_on_floor():
+		velocity += get_gravity() * delta
+	
+	if wall_detector.is_colliding():
+		direction *= -1
+		wall_detector.target_position.x *= -1
+	
+	velocity.x = direction * speed * delta
+	if !stop:
+		move_and_slide()
+
+func take_damage(amount: int):
+	hp = min(hp-amount,max_hp)
+	if hp <=0:
+		death_particles.emitting = true 
+		collision_shape_2d.set_deferred("disabled",true)
+		stop = true
+		sprite.hide()
+		await death_particles.finished
+		queue_free()
+	modulate = Color.FIREBRICK
+	var tween = create_tween()
+	tween.set_ease(Tween.EASE_IN)
+	tween.set_trans(Tween.TRANS_EXPO)
+	tween.tween_property(self,"modulate",Color.WHITE,.2)

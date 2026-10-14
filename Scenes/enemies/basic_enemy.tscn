@@ -1,0 +1,84 @@
+[gd_scene format=3 uid="uid://mcemtoodlxng"]
+
+[ext_resource type="Texture2D" uid="uid://dfqyul88mxsyi" path="res://Assets/tilemaps and spritesheets/monochrome_tilemap_packed.png" id="1_8hmvv"]
+[ext_resource type="Script" uid="uid://ftrsu0tfpbc7" path="res://Scenes/enemies/basic_enemy.gd" id="1_pikmp"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pikmp"]
+atlas = ExtResource("1_8hmvv")
+region = Rect2(0, 256, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3070v"]
+atlas = ExtResource("1_8hmvv")
+region = Rect2(16, 256, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1svv3"]
+atlas = ExtResource("1_8hmvv")
+region = Rect2(32, 256, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qnjq6"]
+atlas = ExtResource("1_8hmvv")
+region = Rect2(48, 256, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7771s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pikmp")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3070v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1svv3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qnjq6")
+}],
+"loop": 1,
+"name": &"run",
+"speed": 8.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5q66j"]
+size = Vector2(8, 10)
+
+[node name="Basic_Enemy" type="CharacterBody2D" unique_id=713533899 node_paths=PackedStringArray("sprite", "wall_detector", "death_particles", "collision_shape_2d") groups=["monster"]]
+collision_layer = 4
+collision_mask = 5
+script = ExtResource("1_pikmp")
+sprite = NodePath("sprite")
+wall_detector = NodePath("wall_detector")
+death_particles = NodePath("DeathParticles")
+collision_shape_2d = NodePath("CollisionShape2D")
+
+[node name="sprite" type="AnimatedSprite2D" parent="." unique_id=2060938428]
+sprite_frames = SubResource("SpriteFrames_7771s")
+animation = &"run"
+autoplay = "run"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2075207837]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_5q66j")
+
+[node name="wall_detector" type="RayCast2D" parent="." unique_id=215931873]
+position = Vector2(0, 2)
+target_position = Vector2(10, 0)
+collision_mask = 5
+
+[node name="DeathParticles" type="CPUParticles2D" parent="." unique_id=1181308477]
+emitting = false
+amount = 32
+lifetime = 0.7
+one_shot = true
+explosiveness = 0.89
+lifetime_randomness = 1.0
+emission_shape = 1
+emission_sphere_radius = 8.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_max = 2.0
