@@ -104,12 +104,10 @@ func _process(_delta: float) -> void:
 		hurtbox.monitoring = true
 		atk_animation.show()
 		atk_animation.play("atk")
-		get_tree().create_timer(.3).timeout.connect(func():hurtbox.monitoring=true)
+		get_tree().create_timer(.3).timeout.connect(func():hurtbox.monitoring=false)
 
 func _ready() -> void:
 	hurtbox.position = hurtbox_pos[atk_direction]
-	print(hurtbox.global_position)
-	print(atk_animation.global_position)
 	hurtbox.monitoring = false
 
 func reset_coyote_time() -> void:
