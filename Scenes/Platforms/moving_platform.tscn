@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://kcwrhgyc3wq5"]
+
+[ext_resource type="Script" uid="uid://cpfxsu008naty" path="res://Scenes/Platforms/moving_platform.gd" id="1_jyay1"]
+[ext_resource type="Texture2D" uid="uid://blc47xhtjanlr" path="res://Assets/Sprites/tile_0063.png" id="2_0pejl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5q66j"]
+size = Vector2(16, 7)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7771s"]
+size = Vector2(14, 5)
+
+[node name="MovingPlatform" type="StaticBody2D" unique_id=545830870 node_paths=PackedStringArray("entity_detector", "crumble_timer", "sprite_2d", "collision_shape_2d")]
+collision_mask = 6
+script = ExtResource("1_jyay1")
+entity_detector = NodePath("EntityDetector")
+crumble_timer = NodePath("CrumbleTimer")
+sprite_2d = NodePath("Sprite2D")
+collision_shape_2d = NodePath("CollisionShape2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1716291382]
+position = Vector2(0, -4.5)
+shape = SubResource("RectangleShape2D_5q66j")
+debug_color = Color(0.9863978, 0, 0.32880265, 0.41960785)
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1652383501]
+texture = ExtResource("2_0pejl")
+
+[node name="EntityDetector" type="ShapeCast2D" parent="." unique_id=1203194039]
+position = Vector2(0, -7)
+shape = SubResource("RectangleShape2D_7771s")
+target_position = Vector2(0, -10)
+max_results = 1
+collision_mask = 6
+
+[node name="CrumbleTimer" type="Timer" parent="." unique_id=553830043]
+wait_time = 0.8
+
+[connection signal="timeout" from="CrumbleTimer" to="." method="_on_crumble_timer_timeout"]
