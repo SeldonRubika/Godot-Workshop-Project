@@ -593,10 +593,10 @@ atk = 12
 
 [node name="JumpTutorial" type="RichTextLabel" parent="TutorialLabels" unique_id=936399024]
 anchors_preset = -1
-offset_left = 278.0
-offset_top = 205.0
-offset_right = 411.5
-offset_bottom = 269.0
+offset_left = 227.0
+offset_top = 182.0
+offset_right = 360.5
+offset_bottom = 297.0
 grow_horizontal = 2
 bbcode_enabled = true
 text = "Press [color=yellow]space[/color] to [color=green]jump[/color], the longer you [color=yellow]hold[/color] the higher you'll [color=green]jump[/color]"
@@ -608,10 +608,10 @@ vertical_alignment = 1
 
 [node name="EnemyTutorial" type="RichTextLabel" parent="TutorialLabels" unique_id=1561979882]
 anchors_preset = -1
-offset_left = 473.5
-offset_top = 195.0
-offset_right = 614.0
-offset_bottom = 259.0
+offset_left = 377.0
+offset_top = 180.0
+offset_right = 517.5
+offset_bottom = 272.0
 grow_horizontal = 2
 bbcode_enabled = true
 text = "These are basic [color=red]enemies[/color], they deal [color=purple]damage[/color] in contact"
@@ -623,14 +623,30 @@ vertical_alignment = 1
 
 [node name="AttackTutorial" type="RichTextLabel" parent="TutorialLabels" unique_id=611250648]
 anchors_preset = -1
-offset_left = 621.0
-offset_top = 214.0
-offset_right = 777.5
-offset_bottom = 294.0
+offset_left = 510.0
+offset_top = 164.0
+offset_right = 666.5
+offset_bottom = 279.0
 grow_horizontal = 2
 bbcode_enabled = true
 text = "[color=green]Attack[/color] by [color=yellow]clicking[/color] and [color=yellow]holding[/color] a [color=light_blue]direction[/color]
-You can pogo off [color=red]enemies[/color]"
+You can pogo off [color=red]enemies[/color]
+"
+fit_content = true
+scroll_active = false
+autowrap_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DownAttackTutorial" type="RichTextLabel" parent="TutorialLabels" unique_id=455639343]
+anchors_preset = -1
+offset_left = 652.0
+offset_top = 185.0
+offset_right = 808.5
+offset_bottom = 300.0
+grow_horizontal = 2
+bbcode_enabled = true
+text = "But [color=green]down attacks[/color] only work while [color=light_blue]airborne[/color]"
 fit_content = true
 scroll_active = false
 autowrap_mode = 2

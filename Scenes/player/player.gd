@@ -86,19 +86,24 @@ func _physics_process(delta: float) -> void:
 func _process(_delta: float) -> void:
 	if !atk_animation.is_playing():
 		atk_animation.hide()
-		atk_animation.rotation_degrees = 0
-		atk_animation.flip_h = false
 		if Input.is_action_pressed("Down"):
+			if  is_on_floor():
+				return
 			atk_direction = "down"
 			atk_animation.rotation_degrees = 90
+			atk_animation.flip_h = false
 		elif Input.is_action_pressed("Up"):
 			atk_direction = "up"
 			atk_animation.rotation_degrees = -90
+			atk_animation.flip_h = false
 		elif Input.is_action_pressed("Right"):
 			atk_direction = "right"
+			atk_animation.flip_h = false
+			atk_animation.rotation_degrees = 0
 		elif Input.is_action_pressed("Left"):
 			atk_direction = "left"
 			atk_animation.flip_h = true
+			atk_animation.rotation_degrees = 0
 	if Input.is_action_just_pressed("Attack"):
 		hurtbox.position = hurtbox_pos[atk_direction]
 		hurtbox.monitoring = true
