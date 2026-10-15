@@ -153,3 +153,10 @@ func _on_hitbox_body_shape_entered(body_rid: RID, body: Node2D, _body_shape_inde
 		taking_knockback = true
 		get_tree().create_timer(.2).timeout.connect(func():taking_knockback=false)
 	
+
+
+func _on_special_tile_detector_body_shape_entered(body_rid: RID, body: Node2D, _body_shape_index: int, _local_shape_index: int) -> void:
+	if body is TileMapLayer:
+		var tile_coord = body.get_coords_for_body_rid(body_rid)
+		var tile_data = body.get_cell_tile_data(tile_coord).get_custom_data("jump_power")
+		velocity.y -= tile_data

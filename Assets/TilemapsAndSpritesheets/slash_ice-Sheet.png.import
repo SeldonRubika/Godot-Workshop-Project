@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bsah5iaqel3j5"
-path="res://.godot/imported/slash_fire-Sheet.png-1f53801909c6328c21bf7e22632642b4.ctex"
+uid="uid://ci56umed1kvyd"
+path="res://.godot/imported/slash_ice-Sheet.png-81e98891152ac3f5dc22d94f564fe020.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/tilemaps and spritesheets/slash_fire-Sheet.png"
-dest_files=["res://.godot/imported/slash_fire-Sheet.png-1f53801909c6328c21bf7e22632642b4.ctex"]
+source_file="res://Assets/TilemapsAndSpritesheets/slash_ice-Sheet.png"
+dest_files=["res://.godot/imported/slash_ice-Sheet.png-81e98891152ac3f5dc22d94f564fe020.ctex"]
 
 [params]
 

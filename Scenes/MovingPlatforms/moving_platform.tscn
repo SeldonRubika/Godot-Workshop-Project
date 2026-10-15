@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://kcwrhgyc3wq5"]
 
-[ext_resource type="Script" uid="uid://cpfxsu008naty" path="res://Scenes/Platforms/moving_platform.gd" id="1_jyay1"]
+[ext_resource type="Script" uid="uid://cpfxsu008naty" path="res://Scenes/MovingPlatforms/moving_platform.gd" id="1_jyay1"]
 [ext_resource type="Texture2D" uid="uid://blc47xhtjanlr" path="res://Assets/Sprites/tile_0063.png" id="2_0pejl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5q66j"]
@@ -10,6 +10,7 @@ size = Vector2(16, 7)
 size = Vector2(14, 5)
 
 [node name="MovingPlatform" type="StaticBody2D" unique_id=545830870 node_paths=PackedStringArray("entity_detector", "crumble_timer", "sprite_2d", "collision_shape_2d")]
+collision_layer = 16
 collision_mask = 6
 script = ExtResource("1_jyay1")
 entity_detector = NodePath("EntityDetector")

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bt1biknciw6vi"
-path="res://.godot/imported/slash.png-5841f0a0ed307b8771cc069b2b621425.ctex"
+uid="uid://ctvh271yr428t"
+path="res://.godot/imported/tile_0163.png-9e525670b72a866b6f9576bfdc5cf563.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/tilemaps and spritesheets/slash.png"
-dest_files=["res://.godot/imported/slash.png-5841f0a0ed307b8771cc069b2b621425.ctex"]
+source_file="res://Assets/Sprites/tile_0163.png"
+dest_files=["res://.godot/imported/tile_0163.png-9e525670b72a866b6f9576bfdc5cf563.ctex"]
 
 [params]
 

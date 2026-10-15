@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://03auxqk5bop"]
+
+[ext_resource type="Script" uid="uid://dlqdhpw8nhosk" path="res://Scenes/BumpingPlatform/bumping_platform.gd" id="1_8kymj"]
+[ext_resource type="Texture2D" uid="uid://ctvh271yr428t" path="res://Assets/Sprites/tile_0163.png" id="2_8kymj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5q66j"]
+size = Vector2(16, 7)
+
+[node name="BumpingPlatform" type="Area2D" unique_id=502311409 node_paths=PackedStringArray("bump_timer", "sprite_2d", "collision_shape_2d")]
+collision_layer = 16
+collision_mask = 6
+script = ExtResource("1_8kymj")
+bump_timer = NodePath("BumpTimer")
+sprite_2d = NodePath("Sprite2D")
+collision_shape_2d = NodePath("CollisionShape2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1716291382]
+position = Vector2(0, -4.5)
+shape = SubResource("RectangleShape2D_5q66j")
+debug_color = Color(0.9863978, 0, 0.32880265, 0.41960785)
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1652383501]
+position = Vector2(0, -8)
+texture = ExtResource("2_8kymj")
+
+[node name="BumpTimer" type="Timer" parent="." unique_id=560716592]
+wait_time = 0.06
+
+[connection signal="timeout" from="BumpTimer" to="." method="_on_bump_timer_timeout"]

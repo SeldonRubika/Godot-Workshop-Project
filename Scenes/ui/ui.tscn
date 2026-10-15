@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://75wn2vwemhr1"]
 
-[ext_resource type="Script" uid="uid://b5a3c2tdgk2dj" path="res://Scenes/ui/ui.gd" id="1_ag0dx"]
-[ext_resource type="PackedScene" uid="uid://j8odnfubaucm" path="res://Scenes/ui/life.tscn" id="2_oak0x"]
+[ext_resource type="Script" uid="uid://b5a3c2tdgk2dj" path="res://Scenes/Ui/ui.gd" id="1_ag0dx"]
+[ext_resource type="PackedScene" uid="uid://j8odnfubaucm" path="res://Scenes/LifeBar/life.tscn" id="2_oak0x"]
 
 [node name="UI" type="CanvasLayer" unique_id=1087143809 node_paths=PackedStringArray("life")]
 script = ExtResource("1_ag0dx")
