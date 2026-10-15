@@ -21,6 +21,9 @@ var jump_hold := 1.0
 #Life
 var max_hp := 100
 var hp := max_hp
+var i_frames := 10
+var temp_i_frames := 0
+var invincible := false
 #kb
 var knockback_power := 6000
 var knockback_direction : Vector2 = Vector2.ZERO
@@ -84,6 +87,12 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func _process(_delta: float) -> void:
+	if invincible:
+		temp_i_frames +=1
+		if temp_i_frames >= i_frames:
+			temp_i_frames = 0
+			invincible = false
+	
 	if !atk_animation.is_playing():
 		atk_animation.hide()
 		if Input.is_action_pressed("Down"):
@@ -136,6 +145,8 @@ func _on_hurtbox_body_entered(body: Node2D) -> void:
 		jump()
 
 func _on_hitbox_body_shape_entered(body_rid: RID, body: Node2D, _body_shape_index: int, _local_shape_index: int) -> void:
+	if invincible:
+		return
 	var atk : int = 0
 	var kb_enemy_pos : Vector2 = Vector2.ZERO
 	if body is TileMapLayer:
@@ -148,6 +159,7 @@ func _on_hitbox_body_shape_entered(body_rid: RID, body: Node2D, _body_shape_inde
 		kb_enemy_pos = body.global_position
 	
 	if  atk != 0:
+		invincible = true
 		take_damage(atk)
 		knockback_direction = (global_position-kb_enemy_pos).normalized()
 		taking_knockback = true

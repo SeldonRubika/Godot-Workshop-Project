@@ -5,6 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://b0rlwocjlw6ko" path="res://Assets/Sprites/Blank.png" id="3_xih8v"]
 [ext_resource type="Texture2D" uid="uid://cn1i851rbrd44" path="res://Assets/Sprites/XpBarUnder.png" id="4_rkfq3"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ou66g"]
+
 [node name="Life" type="Control" unique_id=1433030506 node_paths=PackedStringArray("hp_bar", "hp_bar_highlight")]
 layout_mode = 3
 anchor_left = 0.01
@@ -36,6 +38,7 @@ texture_progress = ExtResource("3_xih8v")
 tint_progress = Color(0.9019608, 0.21960784, 0.05882353, 1)
 
 [node name="HpBar" type="TextureProgressBar" parent="." unique_id=1009013824]
+material = SubResource("ShaderMaterial_ou66g")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
