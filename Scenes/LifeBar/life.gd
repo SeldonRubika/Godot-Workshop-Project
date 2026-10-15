@@ -3,6 +3,10 @@ extends Control
 @export var hp_bar: TextureProgressBar
 @export var hp_bar_highlight: TextureProgressBar
 @export var ease_in := false
+
+func _ready() -> void:
+	Global.respawn.connect(update_life_ui)
+
 func update_life_ui(new_life:int):
 	var tween = create_tween()
 	if ease_in:

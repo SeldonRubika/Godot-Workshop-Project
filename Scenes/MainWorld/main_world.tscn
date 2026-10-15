@@ -8,7 +8,7 @@
 
 [node name="UI" parent="." unique_id=1087143809 instance=ExtResource("1_u0nld")]
 
-[node name="Player" parent="." unique_id=486279298 instance=ExtResource("2_4qooy")]
-position = Vector2(969, 605)
-
 [node name="Level1" parent="." unique_id=1504382055 instance=ExtResource("3_aqd5y")]
+
+[node name="Player" parent="." unique_id=486279298 instance=ExtResource("2_4qooy")]
+position = Vector2(675, 603)

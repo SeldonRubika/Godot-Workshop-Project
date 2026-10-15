@@ -18,6 +18,7 @@ var gravity_factor := 1.0
 var jump_time := .2
 var can_jump :bool = true
 var jump_hold := 1.0
+var stop_velocity := false
 #Life
 var max_hp := 100
 var hp := max_hp
@@ -29,6 +30,7 @@ var knockback_power := 6000
 var knockback_direction : Vector2 = Vector2.ZERO
 var taking_knockback : bool = false
 var y_knockback_offset := -100
+var reverse_knockback := false
 #Atk
 const hurtbox_pos : Dictionary[String,Vector2] = {
 	"up":Vector2(0,-10),
@@ -72,7 +74,11 @@ func _physics_process(delta: float) -> void:
 	elif Input.is_action_just_released("Jump") and can_jump:
 		jump()
 	if taking_knockback:
-		velocity = (knockback_direction*knockback_power*delta)+Vector2(0,y_knockback_offset)
+		var tempt_y_knockback_offset = y_knockback_offset
+		if reverse_knockback:
+			tempt_y_knockback_offset *=-1
+			tempt_y_knockback_offset /= 2
+		velocity = (knockback_direction*knockback_power*delta)+Vector2(0,tempt_y_knockback_offset)
 	else:
 		var direction := Input.get_axis("Left", "Right")
 		if direction:
@@ -84,7 +90,10 @@ func _physics_process(delta: float) -> void:
 			velocity.x = move_toward(velocity.x, 0, SPEED*delta)
 			if is_on_floor() and sprite.animation != "preparing_to_jump":
 				sprite.play("default")
-	move_and_slide()
+	if !stop_velocity:
+		move_and_slide()
+	else:
+		velocity = Vector2.ZERO
 
 func _process(_delta: float) -> void:
 	if invincible:
@@ -123,6 +132,7 @@ func _process(_delta: float) -> void:
 func _ready() -> void:
 	hurtbox.position = hurtbox_pos[atk_direction]
 	hurtbox.monitoring = false
+	Global.respawn_position = global_position
 
 func reset_coyote_time() -> void:
 	coyote_time.stop()
@@ -152,6 +162,8 @@ func _on_hitbox_body_shape_entered(body_rid: RID, body: Node2D, _body_shape_inde
 	if body is TileMapLayer:
 		var tile_coord = body.get_coords_for_body_rid(body_rid)
 		var tile_data = body.get_cell_tile_data(tile_coord).get_custom_data("atk")
+		if body.get_cell_tile_data(tile_coord).get_custom_data("reverse_spike"):
+			reverse_knockback = true
 		atk = tile_data
 		kb_enemy_pos = to_global(body.map_to_local(tile_coord))/2 #i genuinely have no idea why i need to divide by two, but it works
 	elif body.is_in_group(&"monster"):
@@ -163,7 +175,9 @@ func _on_hitbox_body_shape_entered(body_rid: RID, body: Node2D, _body_shape_inde
 		take_damage(atk)
 		knockback_direction = (global_position-kb_enemy_pos).normalized()
 		taking_knockback = true
-		get_tree().create_timer(.2).timeout.connect(func():taking_knockback=false)
+		get_tree().create_timer(.2).timeout.connect(func():
+			taking_knockback=false
+			reverse_knockback = false)
 	
 
 

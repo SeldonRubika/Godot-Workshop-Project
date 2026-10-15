@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://03auxqk5bop"]
 
-[ext_resource type="Script" uid="uid://dlqdhpw8nhosk" path="res://Scenes/BumpingPlatform/bumping_platform.gd" id="1_8kymj"]
+[ext_resource type="Script" uid="uid://dlqdhpw8nhosk" path="res://Scenes/Platforms/BumpingPlatform/bumping_platform.gd" id="1_8kymj"]
 [ext_resource type="Texture2D" uid="uid://ctvh271yr428t" path="res://Assets/Sprites/tile_0163.png" id="2_8kymj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5q66j"]

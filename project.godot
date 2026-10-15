@@ -34,7 +34,8 @@ folder_colors={
 "res://Scenes/Enemies/": "orange",
 "res://Scenes/Enemies/base/": "teal",
 "res://Scenes/Enemies/basic/": "yellow",
-"res://Scenes/Enemies/patrolling/": "yellow"
+"res://Scenes/Enemies/patrolling/": "yellow",
+"res://Scenes/Platforms/": "orange"
 }
 
 [global_group]
