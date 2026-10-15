@@ -1,0 +1,91 @@
+[gd_scene format=3 uid="uid://2xuxqapk3cjs"]
+
+[ext_resource type="Script" uid="uid://bkh7yfkxlgsa1" path="res://Scenes/Enemies/patrolling/patrolling_enemy.gd" id="1_hkibo"]
+[ext_resource type="Texture2D" uid="uid://dfqyul88mxsyi" path="res://Assets/TilemapsAndSpritesheets/monochrome_tilemap_packed.png" id="2_s20ty"]
+[ext_resource type="PackedScene" uid="uid://j8odnfubaucm" path="res://Scenes/LifeBar/life.tscn" id="3_2jaft"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pikmp"]
+atlas = ExtResource("2_s20ty")
+region = Rect2(0, 256, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3070v"]
+atlas = ExtResource("2_s20ty")
+region = Rect2(16, 256, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1svv3"]
+atlas = ExtResource("2_s20ty")
+region = Rect2(32, 256, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qnjq6"]
+atlas = ExtResource("2_s20ty")
+region = Rect2(48, 256, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_m82iv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pikmp")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3070v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1svv3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qnjq6")
+}],
+"loop": 1,
+"name": &"run",
+"speed": 8.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2jck2"]
+size = Vector2(8, 10)
+
+[node name="patrolling_enemy" type="CharacterBody2D" unique_id=1700003485 node_paths=PackedStringArray("sprite", "death_particles", "collision_shape_2d", "life") groups=["monster"]]
+collision_layer = 4
+collision_mask = 5
+script = ExtResource("1_hkibo")
+sprite = NodePath("sprite")
+death_particles = NodePath("DeathParticles")
+collision_shape_2d = NodePath("CollisionShape2D")
+life = NodePath("Life")
+
+[node name="sprite" type="AnimatedSprite2D" parent="." unique_id=969669481]
+sprite_frames = SubResource("SpriteFrames_m82iv")
+animation = &"run"
+autoplay = "run"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1167095436]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_2jck2")
+
+[node name="DeathParticles" type="CPUParticles2D" parent="." unique_id=323489895]
+emitting = false
+amount = 32
+lifetime = 0.7
+one_shot = true
+explosiveness = 0.89
+lifetime_randomness = 1.0
+emission_shape = 1
+emission_sphere_radius = 8.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_max = 2.0
+
+[node name="Life" parent="." unique_id=1433030506 instance=ExtResource("3_2jaft")]
+custom_minimum_size = Vector2(32, 2)
+anchor_left = -1.5
+anchor_top = -1.0
+anchor_right = 0.0
+anchor_bottom = -1.0
+offset_left = -8.0
+offset_top = -8.0
+offset_bottom = -6.0
+scale = Vector2(0.5, 0.5)

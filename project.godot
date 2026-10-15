@@ -30,7 +30,11 @@ mouse_cursor/custom_image="uid://cyib88ipt7ins"
 
 folder_colors={
 "res://Assets/": "red",
-"res://Scenes/": "yellow"
+"res://Scenes/": "yellow",
+"res://Scenes/Enemies/": "orange",
+"res://Scenes/Enemies/base/": "teal",
+"res://Scenes/Enemies/basic/": "yellow",
+"res://Scenes/Enemies/patrolling/": "yellow"
 }
 
 [global_group]

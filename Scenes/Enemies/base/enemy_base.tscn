@@ -1,23 +1,23 @@
 [gd_scene format=3 uid="uid://mcemtoodlxng"]
 
-[ext_resource type="Texture2D" uid="uid://dfqyul88mxsyi" path="res://Assets/TilemapsAndSpritesheets/monochrome_tilemap_packed.png" id="1_8hmvv"]
-[ext_resource type="Script" uid="uid://ftrsu0tfpbc7" path="res://Scenes/Enemies/basic_enemy.gd" id="1_pikmp"]
-[ext_resource type="PackedScene" uid="uid://j8odnfubaucm" path="res://Scenes/LifeBar/life.tscn" id="3_3070v"]
+[ext_resource type="Script" uid="uid://ftrsu0tfpbc7" path="res://Scenes/Enemies/base/enemy_base.gd" id="1_jcxbs"]
+[ext_resource type="Texture2D" uid="uid://dfqyul88mxsyi" path="res://Assets/TilemapsAndSpritesheets/monochrome_tilemap_packed.png" id="2_f6i6g"]
+[ext_resource type="PackedScene" uid="uid://j8odnfubaucm" path="res://Scenes/LifeBar/life.tscn" id="3_nwnou"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pikmp"]
-atlas = ExtResource("1_8hmvv")
+atlas = ExtResource("2_f6i6g")
 region = Rect2(0, 256, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3070v"]
-atlas = ExtResource("1_8hmvv")
+atlas = ExtResource("2_f6i6g")
 region = Rect2(16, 256, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1svv3"]
-atlas = ExtResource("1_8hmvv")
+atlas = ExtResource("2_f6i6g")
 region = Rect2(32, 256, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qnjq6"]
-atlas = ExtResource("1_8hmvv")
+atlas = ExtResource("2_f6i6g")
 region = Rect2(48, 256, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_7771s"]
@@ -48,12 +48,11 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5q66j"]
 size = Vector2(8, 10)
 
-[node name="Basic_Enemy" type="CharacterBody2D" unique_id=713533899 node_paths=PackedStringArray("sprite", "wall_detector", "death_particles", "collision_shape_2d", "life") groups=["monster"]]
+[node name="Enemy_Base" type="CharacterBody2D" unique_id=713533899 node_paths=PackedStringArray("sprite", "death_particles", "collision_shape_2d", "life") groups=["monster"]]
 collision_layer = 4
 collision_mask = 5
-script = ExtResource("1_pikmp")
+script = ExtResource("1_jcxbs")
 sprite = NodePath("sprite")
-wall_detector = NodePath("wall_detector")
 death_particles = NodePath("DeathParticles")
 collision_shape_2d = NodePath("CollisionShape2D")
 life = NodePath("Life")
@@ -66,11 +65,6 @@ autoplay = "run"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2075207837]
 position = Vector2(0, 2)
 shape = SubResource("RectangleShape2D_5q66j")
-
-[node name="wall_detector" type="RayCast2D" parent="." unique_id=215931873]
-position = Vector2(0, 2)
-target_position = Vector2(10, 0)
-collision_mask = 13
 
 [node name="DeathParticles" type="CPUParticles2D" parent="." unique_id=1181308477]
 emitting = false
@@ -85,7 +79,7 @@ spread = 180.0
 gravity = Vector2(0, 0)
 initial_velocity_max = 2.0
 
-[node name="Life" parent="." unique_id=1433030506 instance=ExtResource("3_3070v")]
+[node name="Life" parent="." unique_id=1433030506 instance=ExtResource("3_nwnou")]
 custom_minimum_size = Vector2(32, 2)
 anchor_left = -1.5
 anchor_top = -1.0

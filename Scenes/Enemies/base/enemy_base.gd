@@ -1,8 +1,7 @@
 extends CharacterBody2D
-class_name BasicEnemy
+class_name EnemyBase
 
 @export var sprite: AnimatedSprite2D
-@export var wall_detector: RayCast2D
 @export var death_particles: CPUParticles2D
 @export var collision_shape_2d: CollisionShape2D
 @export var life: Control
@@ -22,13 +21,14 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 	
-	if wall_detector.is_colliding():
-		direction *= -1
-		wall_detector.target_position.x *= -1
+	direction = get_direction()
 	
 	velocity.x = direction * speed * delta
 	if !stop:
 		move_and_slide()
+
+func get_direction():
+	return direction
 
 func take_damage(amount: int):
 	hp = min(hp-amount,max_hp)
