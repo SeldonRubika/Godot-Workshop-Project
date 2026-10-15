@@ -1,0 +1,174 @@
+[gd_scene format=3 uid="uid://ca257rjf53hhq"]
+
+[ext_resource type="Script" uid="uid://cnw57hpcjcpo5" path="res://Scenes/Ui/main_menu.gd" id="1_xrrf6"]
+[ext_resource type="Shader" uid="uid://brmjssbgxsjut" path="res://Scenes/Ui/main_menu.gdshader" id="2_sxfcg"]
+[ext_resource type="Texture2D" uid="uid://df24ka7e61ckf" path="res://Assets/Sprites/panel.png" id="3_sxfcg"]
+[ext_resource type="Texture2D" uid="uid://bxadi4hmr4uki" path="res://Assets/Sprites/MainMenu/startButton.png" id="4_yyf7u"]
+[ext_resource type="Texture2D" uid="uid://d0vsmkr8frtkf" path="res://Assets/Sprites/MainMenu/startButtonPressed.png" id="5_j2t1h"]
+[ext_resource type="Texture2D" uid="uid://tfvy6gwq3w2m" path="res://Assets/Sprites/MainMenu/optionButton.png" id="5_uqtq7"]
+[ext_resource type="Texture2D" uid="uid://b6ne5thko85iv" path="res://Assets/Sprites/MainMenu/quitButton.png" id="6_j2t1h"]
+[ext_resource type="Texture2D" uid="uid://bqfrd5amxudnl" path="res://Assets/Sprites/MainMenu/startButtonHover.png" id="6_rsxdm"]
+[ext_resource type="Texture2D" uid="uid://dacvxnlfxo0ym" path="res://Assets/Sprites/MainMenu/optionButtonPressed.png" id="7_scykj"]
+[ext_resource type="Texture2D" uid="uid://cwfo1d6r54k85" path="res://Assets/Sprites/MainMenu/optionButtonHover.png" id="9_otgkc"]
+[ext_resource type="Texture2D" uid="uid://d0xeqxaw5d3wh" path="res://Assets/Sprites/MainMenu/quitButtonPressed.png" id="9_scykj"]
+[ext_resource type="Texture2D" uid="uid://depw7lyhpsm1c" path="res://Assets/Sprites/MainMenu/quitButtonHover.png" id="12_6hyp3"]
+[ext_resource type="Texture2D" uid="uid://b68be8jllmlvw" path="res://Assets/Sprites/MainMenu/menuButton.png" id="13_tue27"]
+[ext_resource type="Texture2D" uid="uid://bx7oembjqo5o4" path="res://Assets/Sprites/MainMenu/menuButtonPressed.png" id="14_omjtt"]
+[ext_resource type="Texture2D" uid="uid://danimm28wt063" path="res://Assets/Sprites/MainMenu/menuButtonHover.png" id="15_xtjco"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_my40y"]
+shader = ExtResource("2_sxfcg")
+shader_parameter/movement_speed = 0.1
+shader_parameter/movement_scale = 2.0
+shader_parameter/color_1 = Color(6.593913e-06, 0.6311883, 0.49198973, 1)
+shader_parameter/color_2 = Color(0.14044756, 0.14044741, 0.14044744, 1)
+
+[node name="MainMenu" type="Control" unique_id=1254241440 node_paths=PackedStringArray("bg_timer", "bg", "main_screen", "option_screen")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xrrf6")
+bg_timer = NodePath("BgTimer")
+bg = NodePath("Bg")
+main_screen = NodePath("MainScreen")
+option_screen = NodePath("OptionScreen")
+
+[node name="Bg" type="ColorRect" parent="." unique_id=1156259083]
+material = SubResource("ShaderMaterial_my40y")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BgTimer" type="Timer" parent="." unique_id=821454013]
+wait_time = 3.0
+autostart = true
+
+[node name="MainScreen" type="NinePatchRect" parent="." unique_id=1748665178]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.3
+anchor_top = 0.2
+anchor_right = 0.7
+anchor_bottom = 0.8
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_sxfcg")
+patch_margin_left = 3
+patch_margin_top = 3
+patch_margin_right = 3
+patch_margin_bottom = 3
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainScreen" unique_id=1537095927]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.28081584
+anchor_top = 0.024176938
+anchor_right = 0.7191841
+anchor_bottom = 0.97582304
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+metadata/_edit_use_anchors_ = true
+
+[node name="Play" type="TextureButton" parent="MainScreen/VBoxContainer" unique_id=516788850]
+layout_mode = 2
+size_flags_vertical = 3
+texture_normal = ExtResource("4_yyf7u")
+texture_pressed = ExtResource("5_j2t1h")
+texture_hover = ExtResource("6_rsxdm")
+stretch_mode = 5
+
+[node name="Settings" type="TextureButton" parent="MainScreen/VBoxContainer" unique_id=450037061]
+layout_mode = 2
+size_flags_vertical = 3
+texture_normal = ExtResource("5_uqtq7")
+texture_pressed = ExtResource("7_scykj")
+texture_hover = ExtResource("9_otgkc")
+stretch_mode = 5
+
+[node name="Quit" type="TextureButton" parent="MainScreen/VBoxContainer" unique_id=153857988]
+layout_mode = 2
+size_flags_vertical = 3
+texture_normal = ExtResource("6_j2t1h")
+texture_pressed = ExtResource("9_scykj")
+texture_hover = ExtResource("12_6hyp3")
+stretch_mode = 5
+
+[node name="OptionScreen" type="NinePatchRect" parent="." unique_id=588232379]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.3
+anchor_top = 0.2
+anchor_right = 0.7
+anchor_bottom = 0.8
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_sxfcg")
+patch_margin_left = 3
+patch_margin_top = 3
+patch_margin_right = 3
+patch_margin_bottom = 3
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+
+[node name="Menu" type="TextureButton" parent="OptionScreen" unique_id=1336205918]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.027277779
+anchor_top = 0.02913573
+anchor_right = 0.3630833
+anchor_bottom = 0.21169147
+offset_left = -0.16960526
+offset_top = 0.072021484
+offset_right = 0.09121704
+offset_bottom = 0.09439087
+size_flags_vertical = 3
+texture_normal = ExtResource("13_tue27")
+texture_pressed = ExtResource("14_omjtt")
+texture_hover = ExtResource("15_xtjco")
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="OptionScreen" unique_id=726827118]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.28081584
+anchor_top = 0.28909463
+anchor_right = 0.7191841
+anchor_bottom = 0.8832304
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+metadata/_edit_use_anchors_ = true
+
+[node name="EnableCheckpoint" type="CheckButton" parent="OptionScreen/VBoxContainer" unique_id=1130561164]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Enable Checkpoint"
+
+[node name="AttackMouse" type="CheckButton" parent="OptionScreen/VBoxContainer" unique_id=1105119374]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Attack Where Mouse Is"
+
+[node name="CheckButton3" type="CheckButton" parent="OptionScreen/VBoxContainer" unique_id=1976554777]
+layout_mode = 2
+size_flags_vertical = 3
+text = "BLOUP BLOUP"
+
+[connection signal="timeout" from="BgTimer" to="." method="_on_timer_timeout"]
+[connection signal="pressed" from="MainScreen/VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="MainScreen/VBoxContainer/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="MainScreen/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="OptionScreen/Menu" to="." method="_on_menu_pressed"]
+[connection signal="toggled" from="OptionScreen/VBoxContainer/EnableCheckpoint" to="." method="_on_check_button_toggled"]
+[connection signal="toggled" from="OptionScreen/VBoxContainer/AttackMouse" to="." method="_on_attack_mouse_toggled"]

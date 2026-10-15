@@ -12,5 +12,3 @@
 player_spawn_pos = Vector2(300, 312)
 
 [node name="Player" parent="." unique_id=486279298 instance=ExtResource("2_4qooy")]
-
-[node name="Player2" parent="." unique_id=1440742596 instance=ExtResource("2_4qooy")]

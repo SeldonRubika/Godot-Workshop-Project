@@ -2,9 +2,12 @@
 
 [ext_resource type="Script" uid="uid://b5a3c2tdgk2dj" path="res://Scenes/Ui/ui.gd" id="1_ag0dx"]
 [ext_resource type="PackedScene" uid="uid://j8odnfubaucm" path="res://Scenes/LifeBar/life.tscn" id="2_oak0x"]
+[ext_resource type="PackedScene" uid="uid://ca257rjf53hhq" path="res://Scenes/Ui/main_menu.tscn" id="3_h400c"]
 
 [node name="UI" type="CanvasLayer" unique_id=1087143809 node_paths=PackedStringArray("life")]
 script = ExtResource("1_ag0dx")
 life = NodePath("Life")
 
 [node name="Life" parent="." unique_id=1433030506 instance=ExtResource("2_oak0x")]
+
+[node name="MainMenu" parent="." unique_id=1254241440 instance=ExtResource("3_h400c")]

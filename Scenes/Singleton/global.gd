@@ -1,7 +1,13 @@
 extends Node
 
-var respawn_position := Vector2.ZERO
+var option_enable_checkpoint : bool = false
+var option_attack_mouse : bool = false
+
+var respawn_position := Vector2.ZERO:
+	set(a):
+		respawn_position =a
 signal respawn(new_hp:int)
+
 func restart():
 	var player : Player = get_tree().get_first_node_in_group(&"Player")
 	player.hp = player.max_hp

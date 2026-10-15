@@ -123,7 +123,29 @@ func _process(_delta: float) -> void:
 			atk_animation.flip_h = true
 			atk_animation.rotation_degrees = 0
 	if Input.is_action_just_pressed("Attack"):
-		hurtbox.position = hurtbox_pos[atk_direction]
+		if Global.option_attack_mouse:
+			var mouse_pos = get_local_mouse_position()
+			if abs(mouse_pos.y) > abs(mouse_pos.x):
+				if mouse_pos.y > 0 and !is_on_floor():
+					atk_direction = "down"
+					atk_animation.rotation_degrees = 90
+					atk_animation.flip_h = false
+				elif mouse_pos.y <0:
+					atk_direction = "up"
+					atk_animation.rotation_degrees = -90
+					atk_animation.flip_h = false
+			else:
+				if mouse_pos.x > 0:
+					atk_direction = "right"
+					atk_animation.flip_h = false
+					atk_animation.rotation_degrees = 0
+				else:
+					atk_direction = "left"
+					atk_animation.flip_h = true
+					atk_animation.rotation_degrees = 0
+			hurtbox.position = hurtbox_pos[atk_direction]
+		else:
+			hurtbox.position = hurtbox_pos[atk_direction]
 		hurtbox.monitoring = true
 		atk_animation.show()
 		atk_animation.play("atk")
