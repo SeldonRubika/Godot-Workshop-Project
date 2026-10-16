@@ -5,6 +5,7 @@ extends Control
 @export var option_screen: NinePatchRect
 @export var disable_checkpoint: CheckButton
 @export var attack_mouse: CheckButton
+var game_started : bool = false
 
 signal bloup_bloup(toggled_on:bool)
 var bg_color := Color("00a17d")
@@ -19,6 +20,7 @@ func _on_timer_timeout() -> void:
 func _on_play_pressed() -> void:
 	hide()
 	Global.game_started.emit()
+	game_started = true
 
 func _on_quit_pressed() -> void:
 	get_tree().quit()
@@ -28,7 +30,7 @@ func _on_settings_pressed() -> void:
 	option_screen.show()
 
 func _on_menu_pressed() -> void:
-	if get_tree().paused:
+	if get_tree().paused && game_started:
 		get_tree().paused = false
 		pause_menu(false)
 	else:

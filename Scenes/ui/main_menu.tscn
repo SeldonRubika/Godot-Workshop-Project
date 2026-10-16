@@ -12,9 +12,6 @@
 [ext_resource type="Texture2D" uid="uid://cwfo1d6r54k85" path="res://Assets/Sprites/MainMenu/optionButtonHover.png" id="9_otgkc"]
 [ext_resource type="Texture2D" uid="uid://d0xeqxaw5d3wh" path="res://Assets/Sprites/MainMenu/quitButtonPressed.png" id="9_scykj"]
 [ext_resource type="Texture2D" uid="uid://depw7lyhpsm1c" path="res://Assets/Sprites/MainMenu/quitButtonHover.png" id="12_6hyp3"]
-[ext_resource type="Texture2D" uid="uid://b68be8jllmlvw" path="res://Assets/Sprites/MainMenu/menuButton.png" id="13_tue27"]
-[ext_resource type="Texture2D" uid="uid://bx7oembjqo5o4" path="res://Assets/Sprites/MainMenu/menuButtonPressed.png" id="14_omjtt"]
-[ext_resource type="Texture2D" uid="uid://danimm28wt063" path="res://Assets/Sprites/MainMenu/menuButtonHover.png" id="15_xtjco"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_my40y"]
 shader = ExtResource("2_sxfcg")
@@ -135,9 +132,9 @@ offset_top = 0.072021484
 offset_right = 0.09121704
 offset_bottom = 0.09439087
 size_flags_vertical = 3
-texture_normal = ExtResource("13_tue27")
-texture_pressed = ExtResource("14_omjtt")
-texture_hover = ExtResource("15_xtjco")
+texture_normal = ExtResource("6_j2t1h")
+texture_pressed = ExtResource("9_scykj")
+texture_hover = ExtResource("12_6hyp3")
 stretch_mode = 5
 metadata/_edit_use_anchors_ = true
 
