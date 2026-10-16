@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("1_ymhja")
-name = "First Blood"
+name = "First Death"
 desc = "Die for the first time"
 texture = ExtResource("2_ymhja")
 metadata/_custom_type_script = "uid://wio5w2sstpfa"

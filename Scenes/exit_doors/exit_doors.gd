@@ -28,6 +28,6 @@ func _on_body_entered(body: Node2D) -> void:
 
 func check_if_all_enemy_died():
 	for monster in get_tree().get_nodes_in_group(&"monster"):
-		if monster.disabled == false:
+		if monster.has_been_killed == false:
 			return false
 	return true

@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://y46lj57gfews" path="res://Scenes/Ui/achievement_ui.gd" id="1_mclon"]
 [ext_resource type="Texture2D" uid="uid://bf0ms1dqy4fu1" path="res://Assets/AchievementsIcons/Achievement-Pack-32x32_Gold-Crown.png" id="2_72c66"]
+[ext_resource type="Script" uid="uid://leehmvr1x5lu" path="res://addons/AutoSizeText/ui/AutoSizeRichTextLabel.gd" id="3_mcfif"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5q66j"]
 bg_color = Color(0.97, 0.5876583, 0.4365, 0.7254902)
@@ -49,7 +50,7 @@ grow_horizontal = 0
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_5q66j")
 
-[node name="achievement_text" type="RichTextLabel" parent="Tooltip" unique_id=171263602]
+[node name="achievement_text" type="RichTextLabel" parent="Tooltip" unique_id=612101996]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.050154325
@@ -58,9 +59,16 @@ anchor_right = 0.9498457
 anchor_bottom = 0.8978053
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 38
+theme_override_font_sizes/bold_font_size = 38
+theme_override_font_sizes/bold_italics_font_size = 38
+theme_override_font_sizes/italics_font_size = 38
+theme_override_font_sizes/mono_font_size = 38
 bbcode_enabled = true
 scroll_active = false
 horizontal_alignment = 1
+script = ExtResource("3_mcfif")
+metadata/_custom_type_script = "uid://leehmvr1x5lu"
 metadata/_edit_use_anchors_ = true
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

@@ -15,6 +15,7 @@ var max_hp := 20
 var hp := max_hp
 var stop := false
 var disabled := false
+var has_been_killed := false
 
 
 func reset():
@@ -56,6 +57,7 @@ func take_damage(amount: int):
 		hp = min(hp - amount, max_hp)
 		life.update_life_ui(hp)
 		if hp <= 0:
+			has_been_killed = true
 			Global.achievement.got_achievement(preload("uid://bpjclkkwpbv17"))
 			death_sfx.pitch_scale = randf_range(1.1, 1.3)
 			death_sfx.play()

@@ -15,7 +15,7 @@ func load_achievment(resource: AchievementResource):
 	else:
 		achievement_texture.z_index = -1
 	achievement_text.text = "[color=yellow]%s![/color]
-[font_size=12] %s" % [resource.name, resource.desc]
+%s" % [resource.name, resource.desc]
 
 
 func _process(_delta: float) -> void:
