@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://deeoqng87hlpw"]
+
+[ext_resource type="Script" uid="uid://canukm8ltwq4y" path="res://Scenes/exit_doors/exit_doors.gd" id="1_wqc3h"]
+[ext_resource type="Texture2D" uid="uid://dfqyul88mxsyi" path="res://Assets/TilemapsAndSpritesheets/monochrome_tilemap_packed.png" id="2_ruk2i"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5q66j"]
+size = Vector2(24, 18)
+
+[node name="exit_doors" type="Area2D" unique_id=786642998]
+collision_layer = 16
+collision_mask = 2
+script = ExtResource("1_wqc3h")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1761264920]
+texture = ExtResource("2_ruk2i")
+region_enabled = true
+region_rect = Rect2(288, 64, 32, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1901556569]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_5q66j")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
