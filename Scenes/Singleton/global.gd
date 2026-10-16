@@ -16,6 +16,8 @@ signal game_started
 
 
 func restart():
+	for monster in get_tree().get_nodes_in_group(&"monster"):
+		monster.reset()
 	var player: Player = get_tree().get_first_node_in_group(&"Player")
 	player.hp = player.max_hp
 	player.global_position = respawn_position
