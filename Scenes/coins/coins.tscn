@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://b8glbsnv25wdr"]
+
+[ext_resource type="Texture2D" uid="uid://dfqyul88mxsyi" path="res://Assets/TilemapsAndSpritesheets/monochrome_tilemap_packed.png" id="1_6yjnv"]
+[ext_resource type="Script" uid="uid://bsh5mxoe8ma70" path="res://Scenes/coins/coins.gd" id="1_vj5m1"]
+[ext_resource type="AudioStream" uid="uid://lvwfq8aws3yb" path="res://Assets/sfx/coin_pick_up.mp3" id="3_euhmr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6yjnv"]
+size = Vector2(10, 10)
+
+[node name="coins" type="Area2D" unique_id=587863711 node_paths=PackedStringArray("pickup_particles", "sprite_2d", "pickup_sfx") groups=["coins"]]
+collision_layer = 32
+collision_mask = 2
+script = ExtResource("1_vj5m1")
+pickup_particles = NodePath("PickupParticles")
+sprite_2d = NodePath("Sprite2D")
+pickup_sfx = NodePath("PickupSfx")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=649298811]
+texture = ExtResource("1_6yjnv")
+region_enabled = true
+region_rect = Rect2(32, 0, 16, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=427498134]
+shape = SubResource("RectangleShape2D_6yjnv")
+
+[node name="PickupParticles" type="CPUParticles2D" parent="." unique_id=1864979999]
+emitting = false
+amount = 32
+lifetime = 0.7
+one_shot = true
+explosiveness = 0.89
+lifetime_randomness = 1.0
+emission_shape = 1
+emission_sphere_radius = 8.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_max = 2.0
+
+[node name="PickupSfx" type="AudioStreamPlayer2D" parent="." unique_id=51174313]
+stream = ExtResource("3_euhmr")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

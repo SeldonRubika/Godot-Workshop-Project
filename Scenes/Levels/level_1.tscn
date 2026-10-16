@@ -13,7 +13,9 @@
 [ext_resource type="Texture2D" uid="uid://knqh2mx783s" path="res://Assets/parallax/6fx.png" id="5_hwvp3"]
 [ext_resource type="PackedScene" uid="uid://03auxqk5bop" path="res://Scenes/Platforms/BumpingPlatform/bumping_platform.tscn" id="5_rb0md"]
 [ext_resource type="PackedScene" uid="uid://d2x0ira6yro63" path="res://Scenes/Checkpoint/checkpoint.tscn" id="12_afv7b"]
+[ext_resource type="PackedScene" uid="uid://b8glbsnv25wdr" path="res://Scenes/coins/coins.tscn" id="14_3628d"]
 [ext_resource type="PackedScene" uid="uid://deeoqng87hlpw" path="res://Scenes/exit_doors/exit_doors.tscn" id="14_k2mw1"]
+[ext_resource type="PackedScene" uid="uid://c6l2j2g38ut5d" path="res://Scenes/heart/heart.tscn" id="15_tjl6l"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qxyia"]
 texture = ExtResource("1_cyadu")
@@ -839,6 +841,60 @@ position = Vector2(72, 865)
 [node name="BumpingPlatform2" parent="SpecialPlatforms" unique_id=1521749714 instance=ExtResource("5_rb0md")]
 position = Vector2(568, 417)
 jump_power = 400
+
+[node name="Collectibles" type="Node" parent="." unique_id=1431943170]
+
+[node name="Heart" type="Node" parent="Collectibles" unique_id=1381587005]
+
+[node name="Heart" parent="Collectibles/Heart" unique_id=1969243383 instance=ExtResource("15_tjl6l")]
+position = Vector2(286, 665)
+
+[node name="Heart2" parent="Collectibles/Heart" unique_id=1097794965 instance=ExtResource("15_tjl6l")]
+position = Vector2(615, 546)
+
+[node name="Coins" type="Node" parent="Collectibles" unique_id=485611185]
+
+[node name="coins" parent="Collectibles/Coins" unique_id=587863711 instance=ExtResource("14_3628d")]
+position = Vector2(231, 307)
+
+[node name="coins2" parent="Collectibles/Coins" unique_id=402169469 instance=ExtResource("14_3628d")]
+position = Vector2(568, 330)
+
+[node name="coins3" parent="Collectibles/Coins" unique_id=2129695887 instance=ExtResource("14_3628d")]
+position = Vector2(568, 345)
+
+[node name="coins4" parent="Collectibles/Coins" unique_id=172934158 instance=ExtResource("14_3628d")]
+position = Vector2(692, 258)
+
+[node name="coins5" parent="Collectibles/Coins" unique_id=2075177193 instance=ExtResource("14_3628d")]
+position = Vector2(694, 303)
+
+[node name="coins6" parent="Collectibles/Coins" unique_id=1787537724 instance=ExtResource("14_3628d")]
+position = Vector2(952, 323)
+
+[node name="coins7" parent="Collectibles/Coins" unique_id=422576471 instance=ExtResource("14_3628d")]
+position = Vector2(956, 505)
+
+[node name="coins8" parent="Collectibles/Coins" unique_id=1168374308 instance=ExtResource("14_3628d")]
+position = Vector2(507, 520)
+
+[node name="coins10" parent="Collectibles/Coins" unique_id=275383363 instance=ExtResource("14_3628d")]
+position = Vector2(426, 625)
+
+[node name="coins11" parent="Collectibles/Coins" unique_id=1251538610 instance=ExtResource("14_3628d")]
+position = Vector2(215, 824)
+
+[node name="coins12" parent="Collectibles/Coins" unique_id=1166638019 instance=ExtResource("14_3628d")]
+position = Vector2(72, 844)
+
+[node name="coins13" parent="Collectibles/Coins" unique_id=2111981150 instance=ExtResource("14_3628d")]
+position = Vector2(87, 616)
+
+[node name="coins14" parent="Collectibles/Coins" unique_id=806673655 instance=ExtResource("14_3628d")]
+position = Vector2(336, 586)
+
+[node name="coins9" parent="Collectibles/Coins" unique_id=1819077361 instance=ExtResource("14_3628d")]
+position = Vector2(552, 455)
 
 [node name="Checkpoint" parent="." unique_id=606608297 instance=ExtResource("12_afv7b")]
 position = Vector2(696, 613)

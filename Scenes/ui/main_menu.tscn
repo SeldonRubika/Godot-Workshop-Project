@@ -21,7 +21,7 @@ shader_parameter/movement_scale = 2.0
 shader_parameter/color_1 = Color(6.593913e-06, 0.6311883, 0.49198973, 1)
 shader_parameter/color_2 = Color(0.14044756, 0.14044741, 0.14044744, 1)
 
-[node name="MainMenu" type="Control" unique_id=1254241440 node_paths=PackedStringArray("bg_timer", "bg", "main_screen", "option_screen", "disable_checkpoint", "attack_mouse", "menu_sfx")]
+[node name="MainMenu" type="Control" unique_id=1254241440 node_paths=PackedStringArray("bg_timer", "bg", "main_screen", "option_screen", "disable_checkpoint", "attack_mouse", "menu_sfx", "music_volume", "sfx_volume")]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -37,6 +37,8 @@ option_screen = NodePath("OptionScreen")
 disable_checkpoint = NodePath("OptionScreen/VBoxContainer/EnableCheckpoint")
 attack_mouse = NodePath("OptionScreen/VBoxContainer/AttackMouse")
 menu_sfx = NodePath("MenuSfx")
+music_volume = NodePath("OptionScreen/VBoxContainer/MusicVolumeHolder/MusicVolume")
+sfx_volume = NodePath("OptionScreen/VBoxContainer/SfxVolumeHolder/SfxVolume")
 
 [node name="Bg" type="ColorRect" parent="." unique_id=1156259083]
 material = SubResource("ShaderMaterial_my40y")

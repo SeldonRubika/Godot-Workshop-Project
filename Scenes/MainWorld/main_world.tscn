@@ -14,7 +14,6 @@
 player_spawn_pos = Vector2(300, 312)
 
 [node name="Player" parent="." unique_id=486279298 instance=ExtResource("2_4qooy")]
-position = Vector2(555, 452)
 
 [node name="MainMusic" type="AudioStreamPlayer" parent="." unique_id=1973828728]
 process_mode = 3

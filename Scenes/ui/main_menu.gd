@@ -6,6 +6,8 @@ extends Control
 @export var disable_checkpoint: CheckButton
 @export var attack_mouse: CheckButton
 @export var menu_sfx: AudioStreamPlayer
+@export var music_volume: HSlider
+@export var sfx_volume: HSlider
 
 var game_started: bool = false
 
@@ -66,8 +68,10 @@ func _on_attack_mouse_toggled(toggled_on: bool) -> void:
 
 
 func _ready() -> void:
-	Global.option_disable_checkpoint = disable_checkpoint.button_pressed
-	Global.option_attack_mouse = attack_mouse.button_pressed
+	disable_checkpoint.button_pressed = Global.option_disable_checkpoint
+	attack_mouse.button_pressed = Global.option_attack_mouse
+	music_volume.value = Global.music_volume
+	sfx_volume.value = Global.sfx_volume
 	Global.game_paused.connect(pause_menu)
 
 

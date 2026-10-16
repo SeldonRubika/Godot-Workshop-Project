@@ -3,14 +3,47 @@
 [ext_resource type="Script" uid="uid://b5a3c2tdgk2dj" path="res://Scenes/Ui/ui.gd" id="1_ag0dx"]
 [ext_resource type="PackedScene" uid="uid://j8odnfubaucm" path="res://Scenes/LifeBar/life.tscn" id="2_oak0x"]
 [ext_resource type="PackedScene" uid="uid://ca257rjf53hhq" path="res://Scenes/Ui/main_menu.tscn" id="3_h400c"]
+[ext_resource type="Texture2D" uid="uid://df700y11rwons" path="res://Assets/Sprites/tile_0002.png" id="3_jxxc1"]
 
-[node name="UI" type="CanvasLayer" unique_id=1087143809 node_paths=PackedStringArray("life", "bloup_bloup")]
+[node name="UI" type="CanvasLayer" unique_id=1087143809 node_paths=PackedStringArray("life", "bloup_bloup", "coin_text")]
 process_mode = 3
 script = ExtResource("1_ag0dx")
 life = NodePath("Life")
 bloup_bloup = NodePath("BloupBloup")
+coin_text = NodePath("Coins/HBoxContainer/CoinText")
 
 [node name="Life" parent="." unique_id=1433030506 instance=ExtResource("2_oak0x")]
+
+[node name="Coins" type="Control" parent="." unique_id=1675665265]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Coins" unique_id=1807593123]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.225
+anchor_top = 0.325
+anchor_right = 5.25
+anchor_bottom = 2.225
+offset_right = -5.0
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" type="TextureRect" parent="Coins/HBoxContainer" unique_id=1112789545]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("3_jxxc1")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="CoinText" type="RichTextLabel" parent="Coins/HBoxContainer" unique_id=1169702029]
+layout_mode = 2
+size_flags_horizontal = 3
+bbcode_enabled = true
+text = "[color=yellow]x 0"
+scroll_active = false
+vertical_alignment = 1
 
 [node name="MainMenu" parent="." unique_id=1254241440 instance=ExtResource("3_h400c")]
 

@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://c6l2j2g38ut5d"]
+
+[ext_resource type="Script" uid="uid://j3vy38gwhwoy" path="res://Scenes/heart/heart.gd" id="1_15a8a"]
+[ext_resource type="Texture2D" uid="uid://tfp2utuxmvea" path="res://Assets/Sprites/tile_0041.png" id="2_15a8a"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5q66j"]
+
+[node name="Heart" type="Area2D" unique_id=1969243383 node_paths=PackedStringArray("sprite_2d")]
+collision_layer = 32
+collision_mask = 2
+script = ExtResource("1_15a8a")
+sprite_2d = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1349525639]
+texture = ExtResource("2_15a8a")
+region_rect = Rect2(32, 32, 16, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2096771606]
+shape = SubResource("RectangleShape2D_5q66j")
+
+[node name="SpriteTimer" type="Timer" parent="." unique_id=1946756668]
+wait_time = 0.3
+autostart = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="SpriteTimer" to="." method="_on_sprite_timer_timeout"]
