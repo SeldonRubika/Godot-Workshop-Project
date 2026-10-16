@@ -101,55 +101,60 @@ func _process(_delta: float) -> void:
 		if temp_i_frames >= i_frames:
 			temp_i_frames = 0
 			invincible = false
-	
+	#ATTACK LOGIC
 	if !atk_animation.is_playing():
 		atk_animation.hide()
-		if Input.is_action_pressed("Down"):
-			if  is_on_floor():
-				return
-			atk_direction = "down"
-			atk_animation.rotation_degrees = 90
-			atk_animation.flip_h = false
-		elif Input.is_action_pressed("Up"):
+		if !Global.option_attack_mouse:
+			if Input.is_action_pressed("Down"):
+				set_attack_parameters("down")
+			elif Input.is_action_pressed("Up"):
+				set_attack_parameters("up")
+			elif Input.is_action_pressed("Right"):
+				set_attack_parameters("right")
+			elif Input.is_action_pressed("Left"):
+				set_attack_parameters("left")
+		if Input.is_action_just_pressed("Attack"):
+			if Global.option_attack_mouse:
+				var mouse_pos = get_local_mouse_position()
+				if abs(mouse_pos.y) > abs(mouse_pos.x):
+					if mouse_pos.y > 0 :
+						set_attack_parameters("down")
+					elif mouse_pos.y <0:
+						set_attack_parameters("up")
+				else:
+					if mouse_pos.x > 0:
+						set_attack_parameters("right")
+					else:
+						set_attack_parameters("left")
+			else:
+				if is_on_floor():
+					set_attack_parameters("right")
+			hurtbox.position = hurtbox_pos[atk_direction]
+			hurtbox.monitoring = true
+			atk_animation.show()
+			atk_animation.play("atk")
+			get_tree().create_timer(.3).timeout.connect(func():hurtbox.monitoring=false)
+
+func set_attack_parameters(direction:String):
+	match direction:
+		"down": 
+			if !is_on_floor():
+				atk_direction = "down"
+				atk_animation.rotation_degrees = 90
+				atk_animation.flip_h = false
+		"up":
 			atk_direction = "up"
 			atk_animation.rotation_degrees = -90
 			atk_animation.flip_h = false
-		elif Input.is_action_pressed("Right"):
-			atk_direction = "right"
-			atk_animation.flip_h = false
-			atk_animation.rotation_degrees = 0
-		elif Input.is_action_pressed("Left"):
+		"left":
 			atk_direction = "left"
 			atk_animation.flip_h = true
 			atk_animation.rotation_degrees = 0
-	if Input.is_action_just_pressed("Attack"):
-		if Global.option_attack_mouse:
-			var mouse_pos = get_local_mouse_position()
-			if abs(mouse_pos.y) > abs(mouse_pos.x):
-				if mouse_pos.y > 0 and !is_on_floor():
-					atk_direction = "down"
-					atk_animation.rotation_degrees = 90
-					atk_animation.flip_h = false
-				elif mouse_pos.y <0:
-					atk_direction = "up"
-					atk_animation.rotation_degrees = -90
-					atk_animation.flip_h = false
-			else:
-				if mouse_pos.x > 0:
-					atk_direction = "right"
-					atk_animation.flip_h = false
-					atk_animation.rotation_degrees = 0
-				else:
-					atk_direction = "left"
-					atk_animation.flip_h = true
-					atk_animation.rotation_degrees = 0
-			hurtbox.position = hurtbox_pos[atk_direction]
-		else:
-			hurtbox.position = hurtbox_pos[atk_direction]
-		hurtbox.monitoring = true
-		atk_animation.show()
-		atk_animation.play("atk")
-		get_tree().create_timer(.3).timeout.connect(func():hurtbox.monitoring=false)
+		"right": 
+				atk_direction = "right"
+				atk_animation.flip_h = false
+				atk_animation.rotation_degrees = 0
+
 
 func _ready() -> void:
 	hurtbox.position = hurtbox_pos[atk_direction]
@@ -172,7 +177,7 @@ func jump():
 
 func _on_hurtbox_body_entered(body: Node2D) -> void:
 	body.take_damage(atk_power)
-	if atk_direction == "down":
+	if atk_direction == "down": #pogo logic
 		jump_time = randf_range(.18,.22)
 		jump()
 
@@ -181,14 +186,14 @@ func _on_hitbox_body_shape_entered(body_rid: RID, body: Node2D, _body_shape_inde
 		return
 	var atk : int = 0
 	var kb_enemy_pos : Vector2 = Vector2.ZERO
-	if body is TileMapLayer:
+	if body is TileMapLayer: #to check for spikes
 		var tile_coord = body.get_coords_for_body_rid(body_rid)
 		var tile_data = body.get_cell_tile_data(tile_coord).get_custom_data("atk")
 		if body.get_cell_tile_data(tile_coord).get_custom_data("reverse_spike"):
 			reverse_knockback = true
 		atk = tile_data
 		kb_enemy_pos = to_global(body.map_to_local(tile_coord))/2 #i genuinely have no idea why i need to divide by two, but it works
-	elif body.is_in_group(&"monster"):
+	elif body.is_in_group(&"monster"): #to check for enemies
 		atk = body.atk
 		kb_enemy_pos = body.global_position
 	
@@ -204,7 +209,7 @@ func _on_hitbox_body_shape_entered(body_rid: RID, body: Node2D, _body_shape_inde
 
 
 func _on_special_tile_detector_body_shape_entered(body_rid: RID, body: Node2D, _body_shape_index: int, _local_shape_index: int) -> void:
-	if body is TileMapLayer:
+	if body is TileMapLayer: #for the booster pads
 		var tile_coord = body.get_coords_for_body_rid(body_rid)
 		var tile_data = body.get_cell_tile_data(tile_coord).get_custom_data("jump_power")
 		velocity.y -= tile_data

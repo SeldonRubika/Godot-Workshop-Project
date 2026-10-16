@@ -4,10 +4,24 @@
 [ext_resource type="PackedScene" uid="uid://j8odnfubaucm" path="res://Scenes/LifeBar/life.tscn" id="2_oak0x"]
 [ext_resource type="PackedScene" uid="uid://ca257rjf53hhq" path="res://Scenes/Ui/main_menu.tscn" id="3_h400c"]
 
-[node name="UI" type="CanvasLayer" unique_id=1087143809 node_paths=PackedStringArray("life")]
+[node name="UI" type="CanvasLayer" unique_id=1087143809 node_paths=PackedStringArray("life", "bloup_bloup")]
+process_mode = 3
 script = ExtResource("1_ag0dx")
 life = NodePath("Life")
+bloup_bloup = NodePath("BloupBloup")
 
 [node name="Life" parent="." unique_id=1433030506 instance=ExtResource("2_oak0x")]
 
 [node name="MainMenu" parent="." unique_id=1254241440 instance=ExtResource("3_h400c")]
+
+[node name="BloupBloup" type="ColorRect" parent="." unique_id=1879505394]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.44044712, 0.76799834, 1, 0.47700003)
+
+[connection signal="bloup_bloup" from="MainMenu" to="." method="_on_main_menu_bloup_bloup"]

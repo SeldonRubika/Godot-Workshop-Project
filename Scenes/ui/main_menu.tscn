@@ -23,7 +23,8 @@ shader_parameter/movement_scale = 2.0
 shader_parameter/color_1 = Color(6.593913e-06, 0.6311883, 0.49198973, 1)
 shader_parameter/color_2 = Color(0.14044756, 0.14044741, 0.14044744, 1)
 
-[node name="MainMenu" type="Control" unique_id=1254241440 node_paths=PackedStringArray("bg_timer", "bg", "main_screen", "option_screen")]
+[node name="MainMenu" type="Control" unique_id=1254241440 node_paths=PackedStringArray("bg_timer", "bg", "main_screen", "option_screen", "disable_checkpoint", "attack_mouse")]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -35,6 +36,8 @@ bg_timer = NodePath("BgTimer")
 bg = NodePath("Bg")
 main_screen = NodePath("MainScreen")
 option_screen = NodePath("OptionScreen")
+disable_checkpoint = NodePath("OptionScreen/VBoxContainer/EnableCheckpoint")
+attack_mouse = NodePath("OptionScreen/VBoxContainer/AttackMouse")
 
 [node name="Bg" type="ColorRect" parent="." unique_id=1156259083]
 material = SubResource("ShaderMaterial_my40y")
@@ -50,7 +53,6 @@ wait_time = 3.0
 autostart = true
 
 [node name="MainScreen" type="NinePatchRect" parent="." unique_id=1748665178]
-visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.3
@@ -104,6 +106,7 @@ texture_hover = ExtResource("12_6hyp3")
 stretch_mode = 5
 
 [node name="OptionScreen" type="NinePatchRect" parent="." unique_id=588232379]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.3
@@ -151,16 +154,19 @@ theme_override_constants/separation = 16
 metadata/_edit_use_anchors_ = true
 
 [node name="EnableCheckpoint" type="CheckButton" parent="OptionScreen/VBoxContainer" unique_id=1130561164]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
-text = "Enable Checkpoint"
+text = "Disable Checkpoint"
 
 [node name="AttackMouse" type="CheckButton" parent="OptionScreen/VBoxContainer" unique_id=1105119374]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
+button_pressed = true
 text = "Attack Where Mouse Is"
 
-[node name="CheckButton3" type="CheckButton" parent="OptionScreen/VBoxContainer" unique_id=1976554777]
+[node name="BloupBloup" type="CheckButton" parent="OptionScreen/VBoxContainer" unique_id=1976554777]
 layout_mode = 2
 size_flags_vertical = 3
 text = "BLOUP BLOUP"
@@ -172,3 +178,4 @@ text = "BLOUP BLOUP"
 [connection signal="pressed" from="OptionScreen/Menu" to="." method="_on_menu_pressed"]
 [connection signal="toggled" from="OptionScreen/VBoxContainer/EnableCheckpoint" to="." method="_on_check_button_toggled"]
 [connection signal="toggled" from="OptionScreen/VBoxContainer/AttackMouse" to="." method="_on_attack_mouse_toggled"]
+[connection signal="toggled" from="OptionScreen/VBoxContainer/BloupBloup" to="." method="_on_bloup_bloup_toggled"]
