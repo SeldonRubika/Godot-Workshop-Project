@@ -8,6 +8,8 @@ signal death
 @export var coyote_time: Timer
 @export var hurtbox: Area2D
 @export var atk_animation: AnimatedSprite2D
+@export var jump_sfx: AudioStreamPlayer2D
+@export var atk_sfx: AudioStreamPlayer2D
 
 #Movement
 const SPEED := 4000.0
@@ -73,6 +75,8 @@ func _physics_process(delta: float) -> void:
 		jump_time = min(MAX_JUMP_TIME,log(jump_hold))
 	elif Input.is_action_just_released("Jump") and can_jump:
 		jump()
+		jump_sfx.pitch_scale = randf_range(0.8,1.2)
+		jump_sfx.play()
 	if taking_knockback:
 		var tempt_y_knockback_offset = y_knockback_offset
 		if reverse_knockback:
@@ -96,6 +100,8 @@ func _physics_process(delta: float) -> void:
 		velocity = Vector2.ZERO
 
 func _process(_delta: float) -> void:
+	jump_sfx.volume_linear = Global.sfx_volume
+	atk_sfx.volume_linear = Global.sfx_volume * 2
 	if invincible:
 		temp_i_frames +=1
 		if temp_i_frames >= i_frames:
@@ -133,6 +139,8 @@ func _process(_delta: float) -> void:
 			hurtbox.monitoring = true
 			atk_animation.show()
 			atk_animation.play("atk")
+			atk_sfx.pitch_scale = randf_range(0.6,1.4)
+			atk_sfx.play()
 			get_tree().create_timer(.3).timeout.connect(func():hurtbox.monitoring=false)
 
 func set_attack_parameters(direction:String):

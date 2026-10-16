@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://cyoye8ur8jjg1" path="res://Scenes/Enemies/basic/basic_enemy.gd" id="1_u0syb"]
 [ext_resource type="Texture2D" uid="uid://dfqyul88mxsyi" path="res://Assets/TilemapsAndSpritesheets/monochrome_tilemap_packed.png" id="2_qaetl"]
 [ext_resource type="PackedScene" uid="uid://j8odnfubaucm" path="res://Scenes/LifeBar/life.tscn" id="3_4y7fl"]
+[ext_resource type="AudioStream" uid="uid://dg5xrwm6jqqh" path="res://Assets/sfx/Explosion.ogg" id="4_43io2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pikmp"]
 atlas = ExtResource("2_qaetl")
@@ -48,7 +49,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yhxyy"]
 size = Vector2(8, 10)
 
-[node name="BasicEnemy" type="CharacterBody2D" unique_id=1339189182 node_paths=PackedStringArray("wall_detector", "sprite", "death_particles", "collision_shape_2d", "life") groups=["monster"]]
+[node name="BasicEnemy" type="CharacterBody2D" unique_id=1339189182 node_paths=PackedStringArray("wall_detector", "sprite", "death_particles", "collision_shape_2d", "life", "death_sfx") groups=["monster"]]
 collision_layer = 4
 collision_mask = 5
 script = ExtResource("1_u0syb")
@@ -57,6 +58,7 @@ sprite = NodePath("sprite")
 death_particles = NodePath("DeathParticles")
 collision_shape_2d = NodePath("CollisionShape2D")
 life = NodePath("Life")
+death_sfx = NodePath("death_sfx")
 
 [node name="sprite" type="AnimatedSprite2D" parent="." unique_id=1550799164]
 sprite_frames = SubResource("SpriteFrames_ge83g")
@@ -95,3 +97,6 @@ offset_left = -8.0
 offset_top = -8.0
 offset_bottom = -6.0
 scale = Vector2(0.5, 0.5)
+
+[node name="death_sfx" type="AudioStreamPlayer2D" parent="." unique_id=698924424]
+stream = ExtResource("4_43io2")

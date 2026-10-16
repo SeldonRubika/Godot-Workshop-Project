@@ -5,6 +5,7 @@ class_name EnemyBase
 @export var death_particles: CPUParticles2D
 @export var collision_shape_2d: CollisionShape2D
 @export var life: Control
+@export var death_sfx: AudioStreamPlayer2D
 
 @export var speed = 4000.0
 @export var direction := 1.0
@@ -18,6 +19,7 @@ func _ready() -> void:
 	life.set_ui_max(max_hp)
 
 func _physics_process(delta: float) -> void:
+	death_sfx.volume_linear = Global.sfx_volume *2.3
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 	
@@ -34,6 +36,8 @@ func take_damage(amount: int):
 	hp = min(hp-amount,max_hp)
 	life.update_life_ui(hp)
 	if hp <=0:
+		death_sfx.pitch_scale = randf_range(1.1,1.3)
+		death_sfx.play()
 		death_particles.emitting = true 
 		collision_shape_2d.set_deferred("disabled",true)
 		stop = true
