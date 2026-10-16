@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://cwfo1d6r54k85" path="res://Assets/Sprites/MainMenu/optionButtonHover.png" id="9_otgkc"]
 [ext_resource type="Texture2D" uid="uid://d0xeqxaw5d3wh" path="res://Assets/Sprites/MainMenu/quitButtonPressed.png" id="9_scykj"]
 [ext_resource type="Texture2D" uid="uid://depw7lyhpsm1c" path="res://Assets/Sprites/MainMenu/quitButtonHover.png" id="12_6hyp3"]
+[ext_resource type="AudioStream" uid="uid://dwvveijrsakj1" path="res://Assets/sfx/Blip_Select.ogg" id="13_otgkc"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_my40y"]
 shader = ExtResource("2_sxfcg")
@@ -20,7 +21,7 @@ shader_parameter/movement_scale = 2.0
 shader_parameter/color_1 = Color(6.593913e-06, 0.6311883, 0.49198973, 1)
 shader_parameter/color_2 = Color(0.14044756, 0.14044741, 0.14044744, 1)
 
-[node name="MainMenu" type="Control" unique_id=1254241440 node_paths=PackedStringArray("bg_timer", "bg", "main_screen", "option_screen", "disable_checkpoint", "attack_mouse")]
+[node name="MainMenu" type="Control" unique_id=1254241440 node_paths=PackedStringArray("bg_timer", "bg", "main_screen", "option_screen", "disable_checkpoint", "attack_mouse", "menu_sfx")]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -35,6 +36,7 @@ main_screen = NodePath("MainScreen")
 option_screen = NodePath("OptionScreen")
 disable_checkpoint = NodePath("OptionScreen/VBoxContainer/EnableCheckpoint")
 attack_mouse = NodePath("OptionScreen/VBoxContainer/AttackMouse")
+menu_sfx = NodePath("MenuSfx")
 
 [node name="Bg" type="ColorRect" parent="." unique_id=1156259083]
 material = SubResource("ShaderMaterial_my40y")
@@ -195,6 +197,9 @@ layout_mode = 2
 max_value = 1.0
 step = 0.01
 value = 0.9
+
+[node name="MenuSfx" type="AudioStreamPlayer" parent="." unique_id=1281872024]
+stream = ExtResource("13_otgkc")
 
 [connection signal="timeout" from="BgTimer" to="." method="_on_timer_timeout"]
 [connection signal="pressed" from="MainScreen/VBoxContainer/Play" to="." method="_on_play_pressed"]
