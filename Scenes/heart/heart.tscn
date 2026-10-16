@@ -2,14 +2,17 @@
 
 [ext_resource type="Script" uid="uid://j3vy38gwhwoy" path="res://Scenes/heart/heart.gd" id="1_15a8a"]
 [ext_resource type="Texture2D" uid="uid://tfp2utuxmvea" path="res://Assets/Sprites/tile_0041.png" id="2_15a8a"]
+[ext_resource type="AudioStream" uid="uid://lvwfq8aws3yb" path="res://Assets/sfx/coin_pick_up.mp3" id="3_2pqsy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5q66j"]
 
-[node name="Heart" type="Area2D" unique_id=1969243383 node_paths=PackedStringArray("sprite_2d")]
+[node name="Heart" type="Area2D" unique_id=1969243383 node_paths=PackedStringArray("sprite_2d", "pickup_particles", "pickup_sfx")]
 collision_layer = 32
 collision_mask = 2
 script = ExtResource("1_15a8a")
 sprite_2d = NodePath("Sprite2D")
+pickup_particles = NodePath("PickupParticles")
+pickup_sfx = NodePath("PickupSfx")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1349525639]
 texture = ExtResource("2_15a8a")
@@ -21,6 +24,22 @@ shape = SubResource("RectangleShape2D_5q66j")
 [node name="SpriteTimer" type="Timer" parent="." unique_id=1946756668]
 wait_time = 0.3
 autostart = true
+
+[node name="PickupParticles" type="CPUParticles2D" parent="." unique_id=370216660]
+emitting = false
+amount = 32
+lifetime = 0.7
+one_shot = true
+explosiveness = 0.89
+lifetime_randomness = 1.0
+emission_shape = 1
+emission_sphere_radius = 8.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_max = 2.0
+
+[node name="PickupSfx" type="AudioStreamPlayer2D" parent="." unique_id=868134998]
+stream = ExtResource("3_2pqsy")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="timeout" from="SpriteTimer" to="." method="_on_sprite_timer_timeout"]
