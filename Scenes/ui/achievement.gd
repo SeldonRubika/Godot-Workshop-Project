@@ -26,12 +26,16 @@ func show_achievement():
 		new_tween.tween_callback(available.emit)
 
 
-func got_achievement(resource):
+func got_achievement(resource: AchievementResource):
+	if resource.acquired:
+		return
 	if showing_achievement:
 		await available
 	load_achievment(resource)
 	show_achievement()
+	resource.acquired = true
 
 
 func _ready() -> void:
+	Global.achievement = self
 	got_achievement(preload("uid://ddvov6cotjbi4"))

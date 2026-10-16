@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="AchievementResource" format=3 uid="uid://bpjclkkwpbv17"]
+
+[ext_resource type="Script" uid="uid://wio5w2sstpfa" path="res://Resources/AchievementResourcebase.gd" id="1_kpd0r"]
+[ext_resource type="Texture2D" uid="uid://hdb8lmfdv0cl" path="res://Assets/AchievementsIcons/Achievement-Pack-32x32_Gold-Heart.png" id="2_kpd0r"]
+
+[resource]
+script = ExtResource("1_kpd0r")
+name = "First Blood"
+desc = "Kill an enemy"
+texture = ExtResource("2_kpd0r")
+metadata/_custom_type_script = "uid://wio5w2sstpfa"

@@ -11,7 +11,7 @@ const TILE_0042 = preload("uid://c5tvb1fwc1t2q")
 
 func _on_body_entered(body: Node2D) -> void:
 	if body is Player:
-		body.take_damage(-heal)
+		body.heal_damage(heal)
 		pickup_particles.emitting = true
 		pickup_sfx.volume_linear = Global.sfx_volume
 		pickup_sfx.pitch_scale = randf_range(.9, 1.1)

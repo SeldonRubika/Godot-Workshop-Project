@@ -8,6 +8,7 @@ extends Control
 @export var menu_sfx: AudioStreamPlayer
 @export var music_volume: HSlider
 @export var sfx_volume: HSlider
+@export var achievement_screen: NinePatchRect
 
 var game_started: bool = false
 
@@ -54,6 +55,7 @@ func _on_menu_pressed() -> void:
 	else:
 		main_screen.show()
 		option_screen.hide()
+		achievement_screen.hide()
 	play_sfx()
 
 
@@ -87,6 +89,7 @@ func pause_menu(on: bool):
 func _on_bloup_bloup_toggled(toggled_on: bool) -> void:
 	bloup_bloup.emit(toggled_on)
 	play_sfx()
+	Global.achievement.got_achievement(preload("uid://cdnc7v8ac8x6g"))
 
 
 func _on_music_volume_value_changed(value: float) -> void:
@@ -102,3 +105,9 @@ func _on_sfx_volume_value_changed(value: float) -> void:
 func play_sfx():
 	menu_sfx.pitch_scale = randf_range(0.9, 1)
 	menu_sfx.play()
+
+
+func _on_success_pressed() -> void:
+	option_screen.hide()
+	main_screen.hide()
+	achievement_screen.show()

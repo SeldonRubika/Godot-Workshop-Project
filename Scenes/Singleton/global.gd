@@ -5,6 +5,8 @@ var option_attack_mouse: bool = true
 
 var music_volume := 0.9
 var sfx_volume := 0.9
+var achievement: Control
+var ui: CanvasLayer
 
 var respawn_position := Vector2.ZERO:
 	set(a):

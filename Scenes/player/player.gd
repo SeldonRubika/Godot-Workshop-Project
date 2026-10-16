@@ -2,6 +2,7 @@ extends CharacterBody2D
 class_name Player
 
 signal took_damage(new_hp: int)
+signal healed_damage(new_hp: int)
 signal death
 
 @export var sprite: AnimatedSprite2D
@@ -44,10 +45,21 @@ var atk_direction := "right"
 var atk_power := 10.0
 
 
+func heal_damage(amount):
+	hp = min(hp + amount, max_hp)
+	modulate = Color.GREEN
+	var tween = create_tween()
+	tween.set_ease(Tween.EASE_IN)
+	tween.set_trans(Tween.TRANS_EXPO)
+	tween.tween_property(self, "modulate", Color.WHITE, .2)
+	healed_damage.emit(hp)
+
+
 func take_damage(amount: int):
 	hp = min(hp - amount, max_hp)
 	took_damage.emit(hp)
 	if hp <= 0:
+		Global.achievement.got_achievement(preload("uid://bensp0cbw5bu5"))
 		death.emit()
 		Global.restart()
 	modulate = Color.FIREBRICK

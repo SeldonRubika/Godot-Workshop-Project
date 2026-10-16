@@ -11,8 +11,21 @@
 [ext_resource type="Texture2D" uid="uid://dacvxnlfxo0ym" path="res://Assets/Sprites/MainMenu/optionButtonPressed.png" id="7_scykj"]
 [ext_resource type="Texture2D" uid="uid://cwfo1d6r54k85" path="res://Assets/Sprites/MainMenu/optionButtonHover.png" id="9_otgkc"]
 [ext_resource type="Texture2D" uid="uid://d0xeqxaw5d3wh" path="res://Assets/Sprites/MainMenu/quitButtonPressed.png" id="9_scykj"]
+[ext_resource type="Texture2D" uid="uid://2qh6qimq1p13" path="res://Assets/Sprites/MainMenu/successButton.png" id="10_omjtt"]
+[ext_resource type="Texture2D" uid="uid://blij0arru06jb" path="res://Assets/Sprites/MainMenu/successButtonPress.png" id="11_xtjco"]
 [ext_resource type="Texture2D" uid="uid://depw7lyhpsm1c" path="res://Assets/Sprites/MainMenu/quitButtonHover.png" id="12_6hyp3"]
+[ext_resource type="Texture2D" uid="uid://thqxbukfasve" path="res://Assets/Sprites/MainMenu/successButtonHover.png" id="12_7va2j"]
 [ext_resource type="AudioStream" uid="uid://dwvveijrsakj1" path="res://Assets/sfx/Blip_Select.ogg" id="13_otgkc"]
+[ext_resource type="PackedScene" uid="uid://dq2at372a140u" path="res://Scenes/Ui/achievement_ui.tscn" id="16_xtjco"]
+[ext_resource type="Resource" uid="uid://ddvov6cotjbi4" path="res://Resources/welcome.tres" id="17_4obgd"]
+[ext_resource type="Resource" uid="uid://cdnc7v8ac8x6g" path="res://Resources/bloubloup.tres" id="18_7k4lx"]
+[ext_resource type="Resource" uid="uid://df1ulm860rbyv" path="res://Resources/Level_Completed.tres" id="19_mcu06"]
+[ext_resource type="Resource" uid="uid://dvvdrdjq6rmgg" path="res://Resources/Genocide.tres" id="20_8mx5g"]
+[ext_resource type="Resource" uid="uid://b3f1ulhhmfrec" path="res://Resources/No_Death.tres" id="20_qi7fw"]
+[ext_resource type="Resource" uid="uid://lcut3uwb35uc" path="res://Resources/No_Hit.tres" id="21_8mx5g"]
+[ext_resource type="Resource" uid="uid://b4dddvwn6pax2" path="res://Resources/Rich.tres" id="23_ebhs2"]
+[ext_resource type="Resource" uid="uid://bpjclkkwpbv17" path="res://Resources/First Blood.tres" id="24_lstir"]
+[ext_resource type="Resource" uid="uid://bensp0cbw5bu5" path="res://Resources/First Death.tres" id="25_q735m"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_my40y"]
 shader = ExtResource("2_sxfcg")
@@ -21,7 +34,7 @@ shader_parameter/movement_scale = 2.0
 shader_parameter/color_1 = Color(6.593913e-06, 0.6311883, 0.49198973, 1)
 shader_parameter/color_2 = Color(0.14044756, 0.14044741, 0.14044744, 1)
 
-[node name="MainMenu" type="Control" unique_id=1254241440 node_paths=PackedStringArray("bg_timer", "bg", "main_screen", "option_screen", "disable_checkpoint", "attack_mouse", "menu_sfx", "music_volume", "sfx_volume")]
+[node name="MainMenu" type="Control" unique_id=1254241440 node_paths=PackedStringArray("bg_timer", "bg", "main_screen", "option_screen", "disable_checkpoint", "attack_mouse", "menu_sfx", "music_volume", "sfx_volume", "achievement_screen")]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -39,6 +52,7 @@ attack_mouse = NodePath("OptionScreen/VBoxContainer/AttackMouse")
 menu_sfx = NodePath("MenuSfx")
 music_volume = NodePath("OptionScreen/VBoxContainer/MusicVolumeHolder/MusicVolume")
 sfx_volume = NodePath("OptionScreen/VBoxContainer/SfxVolumeHolder/SfxVolume")
+achievement_screen = NodePath("AchievementScreen")
 
 [node name="Bg" type="ColorRect" parent="." unique_id=1156259083]
 material = SubResource("ShaderMaterial_my40y")
@@ -54,6 +68,7 @@ wait_time = 3.0
 autostart = true
 
 [node name="MainScreen" type="NinePatchRect" parent="." unique_id=1748665178]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.3
@@ -96,6 +111,14 @@ size_flags_vertical = 3
 texture_normal = ExtResource("5_uqtq7")
 texture_pressed = ExtResource("7_scykj")
 texture_hover = ExtResource("9_otgkc")
+stretch_mode = 5
+
+[node name="Success" type="TextureButton" parent="MainScreen/VBoxContainer" unique_id=1786048134]
+layout_mode = 2
+size_flags_vertical = 3
+texture_normal = ExtResource("10_omjtt")
+texture_pressed = ExtResource("11_xtjco")
+texture_hover = ExtResource("12_7va2j")
 stretch_mode = 5
 
 [node name="Quit" type="TextureButton" parent="MainScreen/VBoxContainer" unique_id=153857988]
@@ -200,12 +223,98 @@ max_value = 1.0
 step = 0.01
 value = 0.9
 
+[node name="AchievementScreen" type="NinePatchRect" parent="." unique_id=2083404254]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.3
+anchor_top = 0.2
+anchor_right = 0.7
+anchor_bottom = 0.8
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_sxfcg")
+patch_margin_left = 3
+patch_margin_top = 3
+patch_margin_right = 3
+patch_margin_bottom = 3
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+
+[node name="Menu" type="TextureButton" parent="AchievementScreen" unique_id=1287418083]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.027277779
+anchor_top = 0.02913573
+anchor_right = 0.3630833
+anchor_bottom = 0.21169147
+offset_left = -0.16960526
+offset_top = 0.072021484
+offset_right = 0.09121704
+offset_bottom = 0.09439087
+size_flags_vertical = 3
+texture_normal = ExtResource("6_j2t1h")
+texture_pressed = ExtResource("9_scykj")
+texture_hover = ExtResource("12_6hyp3")
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="Achievements_container" type="GridContainer" parent="AchievementScreen" unique_id=868672151]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.12022562
+anchor_top = 0.2710905
+anchor_right = 0.8797744
+anchor_bottom = 0.9192386
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = 32
+theme_override_constants/v_separation = 32
+columns = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="AchievementUi" parent="AchievementScreen/Achievements_container" unique_id=1081583243 instance=ExtResource("16_xtjco")]
+layout_mode = 2
+resource = ExtResource("17_4obgd")
+
+[node name="AchievementUi2" parent="AchievementScreen/Achievements_container" unique_id=701707514 instance=ExtResource("16_xtjco")]
+layout_mode = 2
+resource = ExtResource("18_7k4lx")
+
+[node name="AchievementUi3" parent="AchievementScreen/Achievements_container" unique_id=1293992508 instance=ExtResource("16_xtjco")]
+layout_mode = 2
+resource = ExtResource("19_mcu06")
+
+[node name="AchievementUi4" parent="AchievementScreen/Achievements_container" unique_id=859439912 instance=ExtResource("16_xtjco")]
+layout_mode = 2
+resource = ExtResource("20_8mx5g")
+
+[node name="AchievementUi5" parent="AchievementScreen/Achievements_container" unique_id=268201322 instance=ExtResource("16_xtjco")]
+layout_mode = 2
+resource = ExtResource("20_qi7fw")
+
+[node name="AchievementUi6" parent="AchievementScreen/Achievements_container" unique_id=1008132667 instance=ExtResource("16_xtjco")]
+layout_mode = 2
+resource = ExtResource("21_8mx5g")
+
+[node name="AchievementUi7" parent="AchievementScreen/Achievements_container" unique_id=922177761 instance=ExtResource("16_xtjco")]
+layout_mode = 2
+resource = ExtResource("23_ebhs2")
+
+[node name="AchievementUi8" parent="AchievementScreen/Achievements_container" unique_id=470294406 instance=ExtResource("16_xtjco")]
+layout_mode = 2
+resource = ExtResource("24_lstir")
+
+[node name="AchievementUi9" parent="AchievementScreen/Achievements_container" unique_id=1800741298 instance=ExtResource("16_xtjco")]
+layout_mode = 2
+resource = ExtResource("25_q735m")
+
 [node name="MenuSfx" type="AudioStreamPlayer" parent="." unique_id=1281872024]
 stream = ExtResource("13_otgkc")
 
 [connection signal="timeout" from="BgTimer" to="." method="_on_timer_timeout"]
 [connection signal="pressed" from="MainScreen/VBoxContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="MainScreen/VBoxContainer/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="MainScreen/VBoxContainer/Success" to="." method="_on_success_pressed"]
 [connection signal="pressed" from="MainScreen/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
 [connection signal="pressed" from="OptionScreen/Menu" to="." method="_on_menu_pressed"]
 [connection signal="toggled" from="OptionScreen/VBoxContainer/EnableCheckpoint" to="." method="_on_check_button_toggled"]
@@ -213,3 +322,4 @@ stream = ExtResource("13_otgkc")
 [connection signal="toggled" from="OptionScreen/VBoxContainer/BloupBloup" to="." method="_on_bloup_bloup_toggled"]
 [connection signal="value_changed" from="OptionScreen/VBoxContainer/MusicVolumeHolder/MusicVolume" to="." method="_on_music_volume_value_changed"]
 [connection signal="value_changed" from="OptionScreen/VBoxContainer/SfxVolumeHolder/SfxVolume" to="." method="_on_sfx_volume_value_changed"]
+[connection signal="pressed" from="AchievementScreen/Menu" to="." method="_on_menu_pressed"]

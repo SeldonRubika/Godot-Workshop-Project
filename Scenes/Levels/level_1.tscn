@@ -902,5 +902,6 @@ position = Vector2(696, 613)
 [node name="Checkpoint2" parent="." unique_id=1424722896 instance=ExtResource("12_afv7b")]
 position = Vector2(421, 758)
 
-[node name="exit_doors" parent="." unique_id=786642998 instance=ExtResource("14_k2mw1")]
+[node name="exit_doors" parent="." unique_id=786642998 node_paths=PackedStringArray("current_level") instance=ExtResource("14_k2mw1")]
 position = Vector2(335, 616)
+current_level = NodePath("..")

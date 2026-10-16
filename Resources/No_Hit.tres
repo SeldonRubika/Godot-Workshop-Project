@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="AchievementResource" format=3 uid="uid://lcut3uwb35uc"]
+
+[ext_resource type="Script" uid="uid://wio5w2sstpfa" path="res://Resources/AchievementResourcebase.gd" id="1_f1j1l"]
+[ext_resource type="Texture2D" uid="uid://5grfpqcuomfr" path="res://Assets/AchievementsIcons/Achievement-Pack-32x32_Gold-Shield.png" id="2_f1j1l"]
+
+[resource]
+script = ExtResource("1_f1j1l")
+name = "No Hit"
+desc = "Complete a level without taking a hit"
+texture = ExtResource("2_f1j1l")
+metadata/_custom_type_script = "uid://wio5w2sstpfa"

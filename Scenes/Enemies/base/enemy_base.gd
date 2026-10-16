@@ -56,6 +56,7 @@ func take_damage(amount: int):
 		hp = min(hp - amount, max_hp)
 		life.update_life_ui(hp)
 		if hp <= 0:
+			Global.achievement.got_achievement(preload("uid://bpjclkkwpbv17"))
 			death_sfx.pitch_scale = randf_range(1.1, 1.3)
 			death_sfx.play()
 			death_particles.emitting = true

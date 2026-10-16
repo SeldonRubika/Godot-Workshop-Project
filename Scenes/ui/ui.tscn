@@ -7,12 +7,13 @@
 [ext_resource type="Texture2D" uid="uid://bf0ms1dqy4fu1" path="res://Assets/AchievementsIcons/Achievement-Pack-32x32_Gold-Crown.png" id="5_6jfdq"]
 [ext_resource type="Script" uid="uid://qyp4hd88if2v" path="res://Scenes/Ui/achievement.gd" id="5_gu8fo"]
 
-[node name="UI" type="CanvasLayer" unique_id=1087143809 node_paths=PackedStringArray("life", "bloup_bloup", "coin_text")]
+[node name="UI" type="CanvasLayer" unique_id=1087143809 node_paths=PackedStringArray("life", "bloup_bloup", "coin_text", "end_black_screen")]
 process_mode = 3
 script = ExtResource("1_ag0dx")
 life = NodePath("Life")
 bloup_bloup = NodePath("BloupBloup")
 coin_text = NodePath("Coins/HBoxContainer/CoinText")
+end_black_screen = NodePath("EndBlackScreen")
 
 [node name="Life" parent="." unique_id=1433030506 instance=ExtResource("2_oak0x")]
 
@@ -58,6 +59,15 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(0.44044712, 0.76799834, 1, 0.47700003)
+
+[node name="EndBlackScreen" type="ColorRect" parent="." unique_id=1587580450]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
 
 [node name="Achievement" type="Control" parent="." unique_id=1324088082 node_paths=PackedStringArray("achievement_texture", "achievement_text")]
 layout_mode = 3

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="AchievementResource" format=3 uid="uid://bensp0cbw5bu5"]
+
+[ext_resource type="Script" uid="uid://wio5w2sstpfa" path="res://Resources/AchievementResourcebase.gd" id="1_ymhja"]
+[ext_resource type="Texture2D" uid="uid://hqwm3l3ye2mc" path="res://Assets/AchievementsIcons/Achievement-Pack-32x32_Bronze-Medal.png" id="2_ymhja"]
+
+[resource]
+script = ExtResource("1_ymhja")
+name = "First Blood"
+desc = "Die for the first time"
+texture = ExtResource("2_ymhja")
+metadata/_custom_type_script = "uid://wio5w2sstpfa"

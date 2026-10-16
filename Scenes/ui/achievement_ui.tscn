@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://dq2at372a140u"]
+
+[ext_resource type="Script" uid="uid://y46lj57gfews" path="res://Scenes/Ui/achievement_ui.gd" id="1_mclon"]
+[ext_resource type="Texture2D" uid="uid://bf0ms1dqy4fu1" path="res://Assets/AchievementsIcons/Achievement-Pack-32x32_Gold-Crown.png" id="2_72c66"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5q66j"]
+bg_color = Color(0.97, 0.5876583, 0.4365, 0.7254902)
+
+[node name="AchievementUi" type="Panel" unique_id=1008132667 node_paths=PackedStringArray("achievement_texture", "achievement_text", "tooltip")]
+z_index = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_mclon")
+achievement_texture = NodePath("achievement_texture")
+achievement_text = NodePath("Tooltip/achievement_text")
+tooltip = NodePath("Tooltip")
+
+[node name="achievement_texture" type="TextureRect" parent="." unique_id=1946232676]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.05288889
+anchor_top = 0.07749383
+anchor_right = 0.9471111
+anchor_bottom = 0.9225063
+offset_left = 0.071998596
+offset_top = -0.21600151
+offset_right = -0.072021484
+offset_bottom = 0.21594238
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_72c66")
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="Tooltip" type="Panel" parent="." unique_id=160448219]
+z_index = 2
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.1
+anchor_top = 0.05
+anchor_right = 2.0
+anchor_bottom = 0.95
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_5q66j")
+
+[node name="achievement_text" type="RichTextLabel" parent="Tooltip" unique_id=171263602]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.050154325
+anchor_top = 0.102194756
+anchor_right = 0.9498457
+anchor_bottom = 0.8978053
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+scroll_active = false
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
