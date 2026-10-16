@@ -3,6 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://75wn2vwemhr1" path="res://Scenes/Ui/ui.tscn" id="1_u0nld"]
 [ext_resource type="PackedScene" uid="uid://dq18fci16dwip" path="res://Scenes/Player/player.tscn" id="2_4qooy"]
 [ext_resource type="PackedScene" uid="uid://bdbtjuu7mkhso" path="res://Scenes/Levels/level_1.tscn" id="3_aqd5y"]
+[ext_resource type="Script" uid="uid://daga3ju1shuh1" path="res://Scenes/MainWorld/main_music.gd" id="4_7kc2d"]
+[ext_resource type="AudioStream" uid="uid://csijk4ktvlku2" path="res://Assets/8bit Music/menu_music.ogg" id="4_u0nld"]
 
 [node name="MainWorld" type="Node2D" unique_id=1216008883]
 
@@ -12,3 +14,10 @@
 player_spawn_pos = Vector2(300, 312)
 
 [node name="Player" parent="." unique_id=486279298 instance=ExtResource("2_4qooy")]
+
+[node name="MainMusic" type="AudioStreamPlayer" parent="." unique_id=1973828728]
+process_mode = 3
+stream = ExtResource("4_u0nld")
+script = ExtResource("4_7kc2d")
+
+[connection signal="finished" from="MainMusic" to="MainMusic" method="play_music"]

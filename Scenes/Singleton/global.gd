@@ -3,12 +3,16 @@ extends Node
 var option_disable_checkpoint : bool = false
 var option_attack_mouse : bool = false
 
+var music_volume := 0.9
+var sfx_volume := 0.9
+
 var respawn_position := Vector2.ZERO:
 	set(a):
 		respawn_position =a
 
 signal respawn(new_hp:int)
 signal game_paused(on:bool)
+signal game_started
 
 func restart():
 	var player : Player = get_tree().get_first_node_in_group(&"Player")
@@ -22,3 +26,7 @@ func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("Pause"):
 		get_tree().paused = !get_tree().paused
 		game_paused.emit(get_tree().paused)
+
+func _ready() -> void:
+	get_tree().paused = true
+	game_started.connect(func():get_tree().paused = false)

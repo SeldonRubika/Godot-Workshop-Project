@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dd2uuqbbvpwek"
+path="res://.godot/imported/Canyon.ogg-8d55230574b1b5b9d65477803837dd24.oggvorbisstr"
+
+[deps]
+
+source_file="res://Assets/8bit Music/Canyon.ogg"
+dest_files=["res://.godot/imported/Canyon.ogg-8d55230574b1b5b9d65477803837dd24.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

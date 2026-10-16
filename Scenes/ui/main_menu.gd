@@ -18,6 +18,7 @@ func _on_timer_timeout() -> void:
 
 func _on_play_pressed() -> void:
 	hide()
+	Global.game_started.emit()
 
 func _on_quit_pressed() -> void:
 	get_tree().quit()
@@ -55,3 +56,11 @@ func pause_menu(on :bool):
 
 func _on_bloup_bloup_toggled(toggled_on: bool) -> void:
 	bloup_bloup.emit(toggled_on)
+
+func _on_music_volume_value_changed(value: float) -> void:
+	@warning_ignore("narrowing_conversion")
+	Global.music_volume = value
+
+func _on_sfx_volume_value_changed(value: float) -> void:
+	@warning_ignore("narrowing_conversion")
+	Global.music_volume = value

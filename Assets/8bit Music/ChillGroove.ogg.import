@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://c6cibovuc6imx"
+path="res://.godot/imported/ChillGroove.ogg-cb13283e5cd81c594497af17a9874a16.oggvorbisstr"
+
+[deps]
+
+source_file="res://Assets/8bit Music/ChillGroove.ogg"
+dest_files=["res://.godot/imported/ChillGroove.ogg-cb13283e5cd81c594497af17a9874a16.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
