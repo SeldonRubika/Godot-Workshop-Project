@@ -2,6 +2,9 @@ extends Control
 @export var achievement_texture: TextureRect
 @export var achievement_text: RichTextLabel
 
+signal available
+var showing_achievement := false
+
 
 func load_achievment(resource: AchievementResource):
 	achievement_texture.texture = resource.texture
@@ -10,15 +13,25 @@ func load_achievment(resource: AchievementResource):
 
 
 func show_achievement():
-	var tween = create_tween()
-	tween.tween_property(self, "anchor_top", 0.84, 1.5)
-	tween.parallel().tween_property(self, "anchor_bottom", 0.94, 1.5)
-	await get_tree().create_timer(3).timeout
-	var new_tween = create_tween()
-	new_tween.tween_property(self, "anchor_top", 1.3, 1.5)
-	new_tween.parallel().tween_property(self, "anchor_bottom", 1.4, 1.5)
+	if !showing_achievement:
+		showing_achievement = true
+		var tween = create_tween()
+		tween.tween_property(self, "anchor_top", 0.84, 1.5)
+		tween.parallel().tween_property(self, "anchor_bottom", 0.94, 1.5)
+		await get_tree().create_timer(3).timeout
+		var new_tween = create_tween()
+		new_tween.tween_property(self, "anchor_top", 1.3, 1.5)
+		new_tween.parallel().tween_property(self, "anchor_bottom", 1.4, 1.5)
+		showing_achievement = false
+		new_tween.tween_callback(available.emit)
+
+
+func got_achievement(resource):
+	if showing_achievement:
+		await available
+	load_achievment(resource)
+	show_achievement()
 
 
 func _ready() -> void:
-	load_achievment(preload("uid://ddvov6cotjbi4"))
-	show_achievement()
+	got_achievement(preload("uid://ddvov6cotjbi4"))
