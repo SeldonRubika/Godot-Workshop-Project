@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="AchievementResource" format=3 uid="uid://bu8gxbnqlkwlh"]
+
+[ext_resource type="Script" uid="uid://wio5w2sstpfa" path="res://Resources/AchievementResourcebase.gd" id="1_6jae3"]
+[ext_resource type="Texture2D" uid="uid://bf0ms1dqy4fu1" path="res://Assets/AchievementsIcons/Achievement-Pack-32x32_Gold-Crown.png" id="2_l4lw3"]
+
+[resource]
+script = ExtResource("1_6jae3")
+name = "Test Achievement"
+desc = "I'm a test, hello"
+metadata/_custom_type_script = "uid://wio5w2sstpfa"

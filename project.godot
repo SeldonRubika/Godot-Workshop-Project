@@ -39,6 +39,7 @@ enabled=PackedStringArray("res://addons/GDQuest_GDScript_formatter/plugin.cfg")
 
 folder_colors={
 "res://Assets/": "red",
+"res://Resources/": "green",
 "res://Scenes/": "yellow",
 "res://Scenes/Enemies/": "orange",
 "res://Scenes/Enemies/base/": "teal",

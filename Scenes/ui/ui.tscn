@@ -4,6 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://j8odnfubaucm" path="res://Scenes/LifeBar/life.tscn" id="2_oak0x"]
 [ext_resource type="PackedScene" uid="uid://ca257rjf53hhq" path="res://Scenes/Ui/main_menu.tscn" id="3_h400c"]
 [ext_resource type="Texture2D" uid="uid://df700y11rwons" path="res://Assets/Sprites/tile_0002.png" id="3_jxxc1"]
+[ext_resource type="Texture2D" uid="uid://bf0ms1dqy4fu1" path="res://Assets/AchievementsIcons/Achievement-Pack-32x32_Gold-Crown.png" id="5_6jfdq"]
+[ext_resource type="Script" uid="uid://qyp4hd88if2v" path="res://Scenes/Ui/achievement.gd" id="5_gu8fo"]
 
 [node name="UI" type="CanvasLayer" unique_id=1087143809 node_paths=PackedStringArray("life", "bloup_bloup", "coin_text")]
 process_mode = 3
@@ -56,5 +58,60 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(0.44044712, 0.76799834, 1, 0.47700003)
+
+[node name="Achievement" type="Control" parent="." unique_id=1324088082 node_paths=PackedStringArray("achievement_texture", "achievement_text")]
+layout_mode = 3
+anchor_left = 0.87
+anchor_top = 1.3
+anchor_right = 0.93000007
+anchor_bottom = 1.4
+grow_horizontal = 0
+grow_vertical = 0
+script = ExtResource("5_gu8fo")
+achievement_texture = NodePath("AchievementTexture")
+achievement_text = NodePath("AchievementText")
+metadata/_edit_use_anchors_ = true
+
+[node name="Panel" type="Panel" parent="Achievement" unique_id=1422018781]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.45214325
+anchor_top = -1.0542594
+anchor_right = 1.4431434
+anchor_bottom = 1.044
+offset_left = 0.012205124
+offset_top = -0.0040130615
+offset_right = 0.009773254
+offset_bottom = 0.028800964
+metadata/_edit_use_anchors_ = true
+
+[node name="AchievementTexture" type="TextureRect" parent="Achievement" unique_id=360330854]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_6jfdq")
+expand_mode = 4
+stretch_mode = 5
+
+[node name="AchievementText" type="RichTextLabel" parent="Achievement" unique_id=1439565420]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.5
+anchor_top = -1.039
+anchor_right = 1.5
+anchor_bottom = -0.020000001
+offset_left = 6.3200684
+offset_top = 0.007194519
+offset_right = -6.3200684
+bbcode_enabled = true
+text = "[color=yellow]Achievement![/color]
+[font_size=12] you got you first achievement"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="bloup_bloup" from="MainMenu" to="." method="_on_main_menu_bloup_bloup"]
