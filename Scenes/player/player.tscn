@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://bcacrj8sh5unp" path="res://Scenes/Player/player.gd" id="1_eo61r"]
 [ext_resource type="AudioStream" uid="uid://b51x3wmwa5ldr" path="res://Assets/sfx/Jump.ogg" id="2_htcer"]
 [ext_resource type="Texture2D" uid="uid://bt1biknciw6vi" path="res://Assets/TilemapsAndSpritesheets/slash.png" id="3_mxepk"]
+[ext_resource type="Script" uid="uid://c6ety2vbybrvq" path="res://Scenes/screen_shake/screen_shake.gd" id="4_dd0ac"]
 [ext_resource type="AudioStream" uid="uid://03xdn2oqpdmu" path="res://Assets/sfx/slash_sfx.mp3" id="4_mtuoh"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_eo61r"]
@@ -188,6 +189,7 @@ shape = SubResource("RectangleShape2D_2muot")
 [node name="Camera2D" type="Camera2D" parent="." unique_id=421715226]
 offset = Vector2(0, -24)
 zoom = Vector2(3, 3)
+script = ExtResource("4_dd0ac")
 
 [node name="CoyoteTime" type="Timer" parent="." unique_id=1053421249]
 wait_time = 0.13

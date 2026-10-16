@@ -56,6 +56,7 @@ func heal_damage(amount):
 
 
 func take_damage(amount: int):
+	Global.camera.screen_shake(.5)
 	hp = min(hp - amount, max_hp)
 	took_damage.emit(hp)
 	if hp <= 0:
